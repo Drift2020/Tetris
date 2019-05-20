@@ -1,6 +1,6 @@
 // Copyright 2009-2014 Blam Games, Inc. All Rights Reserved.
 
-#include "TestApp.h"
+#include "Game.h"
 #include <algorithm>
 #include <time.h>
 #include <conio.h>

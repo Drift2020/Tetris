@@ -1,9 +1,9 @@
 // Copyright 2009-2014 Blam Games, Inc. All Rights Reserved.
 
-#include "TestApp.h"
+#include "Game.h"
 
 void main ()
 {
-	TestApp app;
+	Game app;
 	app.Run();
 }

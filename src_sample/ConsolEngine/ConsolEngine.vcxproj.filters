@@ -5,6 +5,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{493158eb-cf6f-4d03-bcd0-c7f2ca7e0ebf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseApp.cpp">
@@ -13,19 +16,19 @@
     <ClCompile Include="main.cpp">
       <Filter>sources</Filter>
     </ClCompile>
-    <ClCompile Include="TestApp.cpp">
+    <ClCompile Include="Game.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseApp.h">
-      <Filter>sources</Filter>
+      <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="PerformanceCounter.h">
-      <Filter>sources</Filter>
+      <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="TestApp.h">
-      <Filter>sources</Filter>
+    <ClInclude Include="Game.h">
+      <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

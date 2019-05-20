@@ -90,12 +90,12 @@
   <ItemGroup>
     <ClCompile Include="BaseApp.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="TestApp.cpp" />
+    <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseApp.h" />
     <ClInclude Include="PerformanceCounter.h" />
-    <ClInclude Include="TestApp.h" />
+    <ClInclude Include="Game.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
