@@ -23,7 +23,7 @@ public:
 
 	void Move_on(int x, int y);
 	void Move_to(int x, int y);
-//	void Rotate(my_enums::Rotate r);
+
 
 };
 
