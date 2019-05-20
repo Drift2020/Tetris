@@ -8,6 +8,12 @@
     <Filter Include="Header">
       <UniqueIdentifier>{493158eb-cf6f-4d03-bcd0-c7f2ca7e0ebf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header\Figures">
+      <UniqueIdentifier>{e597ef26-8251-4cec-a1d8-5f64e784b105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Figures">
+      <UniqueIdentifier>{7f7346c3-029a-489d-bdbe-6e3da9059c8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseApp.cpp">
@@ -19,6 +25,12 @@
     <ClCompile Include="Game.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="Figure_Parent.cpp">
+      <Filter>sources\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>sources\Figures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseApp.h">
@@ -29,6 +41,15 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Header\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_Parent.h">
+      <Filter>Header\Figures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
