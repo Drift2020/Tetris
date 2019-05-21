@@ -90,15 +90,31 @@
   <ItemGroup>
     <ClCompile Include="BaseApp.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Creator.cpp" />
     <ClCompile Include="Figure_Parent.cpp" />
+    <ClCompile Include="Figure_T1.cpp" />
+    <ClCompile Include="Figure_T2.cpp" />
+    <ClCompile Include="Figure_T3.cpp" />
+    <ClCompile Include="Figure_T4.cpp" />
+    <ClCompile Include="Figure_T5.cpp" />
+    <ClCompile Include="Figure_T6.cpp" />
+    <ClCompile Include="Figure_T7.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseApp.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Creator.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Figure_Parent.h" />
+    <ClInclude Include="Figure_T1.h" />
+    <ClInclude Include="Figure_T2.h" />
+    <ClInclude Include="Figure_T3.h" />
+    <ClInclude Include="Figure_T4.h" />
+    <ClInclude Include="Figure_T5.h" />
+    <ClInclude Include="Figure_T6.h" />
+    <ClInclude Include="Figure_T7.h" />
     <ClInclude Include="PerformanceCounter.h" />
     <ClInclude Include="Game.h" />
   </ItemGroup>

@@ -7,13 +7,15 @@ Block::Block()
 	_x = 0;
 	_y = 0;
 	_symbol = ' ';
+    _move = my_enums::Stop;
 }
 
-Block::Block(int x, int y, char & symbol)
+Block::Block(int x, int y, char & symbol, my_enums::Move m)
 {
 	_x = x;
 	_y = y;
 	_symbol = symbol;
+	_move = m;
 }
 
 
@@ -40,6 +42,11 @@ int Block::Get_Y()
 {
 	return _y;
 }
+
+my_enums::Move  Block::Get_move()
+{
+	return _move;
+}
 #pragma endregion
 
 
@@ -55,6 +62,11 @@ void Block::Set_X(int x)
 void Block::Set_Y(int y)
 {
 	_y = y;
+}
+
+void Block::Set_move(my_enums::Move m)
+{
+	_move = m;
 }
 #pragma endregion
 

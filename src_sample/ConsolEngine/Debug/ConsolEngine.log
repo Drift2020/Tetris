@@ -1,11 +1,1 @@
-﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  BaseApp.cpp
-d:\documents\documents\work\с++\src_sample\consolengine\performancecounter.h(35): warning C4244: 'return': conversion from 'LONGLONG' to 'int', possible loss of data
-d:\documents\documents\work\с++\src_sample\consolengine\performancecounter.h(42): warning C4244: 'return': conversion from 'LONGLONG' to 'int', possible loss of data
-d:\documents\documents\work\с++\src_sample\consolengine\baseapp.cpp(16): warning C4838: conversion from 'const int' to 'SHORT' requires a narrowing conversion
-d:\documents\documents\work\с++\src_sample\consolengine\baseapp.cpp(17): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-d:\documents\documents\work\с++\src_sample\consolengine\baseapp.cpp(102): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\conio.h(459): note: see declaration of 'kbhit'
-d:\documents\documents\work\с++\src_sample\consolengine\baseapp.cpp(104): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\conio.h(453): note: see declaration of 'getch'
-  ConsolEngine.vcxproj -> D:\Documents\Documents\Work\С++\src_sample\Debug\ConsolEngine.exe
+﻿

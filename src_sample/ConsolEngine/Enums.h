@@ -9,7 +9,7 @@ namespace my_enums {
 		Right
 	};
 
-	enum Mowe {
+	enum Move {
 		Down,
 		RunDown,
 		Stop
