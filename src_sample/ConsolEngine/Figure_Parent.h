@@ -11,7 +11,7 @@ protected:
 	
 	std::list<Block> _blocks;
 	std::list<Block>::iterator pb;
-	int size;
+	int _size;
 	int _count_block;
 public:
 	Figure_Parent();

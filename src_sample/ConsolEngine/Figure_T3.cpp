@@ -59,6 +59,9 @@ int Figure_T3::Get_Y()
 {
 	return _y;
 }
+int   Figure_T3::Get_size() {
+	return _size;
+}
 #pragma endregion
 
 
@@ -72,6 +75,10 @@ void Figure_T3::Set_X(int x)
 
 }
 void Figure_T3::Set_Y(int y)
+{
+
+}
+void  Figure_T3::Set_size(int s)
 {
 
 }

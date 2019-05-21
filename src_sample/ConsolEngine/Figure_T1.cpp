@@ -9,9 +9,19 @@
 
 Figure_T1::Figure_T1() : Figure_Parent()
 {
-	size=4
-	for (int i = 0; i < size; i++)
-		_blocks;
+	_size = 4;
+
+	
+	
+		Block * temp = new  Block(0,0,'&',my_enums::Stop);
+		_blocks.push_back(*temp);
+		 temp = new  Block(0,1,'&',my_enums::Stop);
+		_blocks.push_back(*temp);
+		temp = new  Block(0, 2, '&', my_enums::Stop);
+		_blocks.push_back(*temp);
+		 temp = new Block(1, 2, '&', my_enums::Stop);
+		_blocks.push_back(*temp);
+	
 }
 
 
@@ -62,6 +72,10 @@ int Figure_T1::Get_Y()
 {
 	return _y;
 }
+
+int   Figure_T1::Get_size() {
+	return _size;
+}
 #pragma endregion
 
 
@@ -75,6 +89,11 @@ void Figure_T1::Set_X(int x)
 
 }
 void Figure_T1::Set_Y(int y)
+{
+
+}
+
+void  Figure_T1::Set_size(int s)
 {
 
 }

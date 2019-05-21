@@ -4,9 +4,6 @@
 
 #pragma region  system
 
-
-
-
 Figure_T7::Figure_T7() : Figure_Parent()
 {
 
@@ -58,6 +55,9 @@ int Figure_T7::Get_Y()
 {
 	return _y;
 }
+int   Figure_T7::Get_size() {
+	return _size;
+}
 #pragma endregion
 
 
@@ -71,6 +71,10 @@ void Figure_T7::Set_X(int x)
 
 }
 void Figure_T7::Set_Y(int y)
+{
+
+}
+void  Figure_T7::Set_size(int s)
 {
 
 }

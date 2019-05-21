@@ -10,7 +10,7 @@ class Block
 	my_enums::Move _move;
 public:
 	Block();
-	Block(int x, int y, char & _symbol, my_enums::Move m);
+	Block(int x, int y, char _symbol, my_enums::Move m);
 	~Block();
 
 
@@ -19,7 +19,7 @@ public:
 	int Get_Y();
 	my_enums::Move Get_move();
 
-	void Set_symbol(char & symbol);
+	void Set_symbol(char  symbol);
 	void Set_X(int x);
 	void Set_Y(int y);
 	void Set_move(my_enums::Move m);

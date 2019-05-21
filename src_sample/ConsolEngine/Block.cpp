@@ -10,7 +10,7 @@ Block::Block()
     _move = my_enums::Stop;
 }
 
-Block::Block(int x, int y, char & symbol, my_enums::Move m)
+Block::Block(int x, int y, char  symbol, my_enums::Move m)
 {
 	_x = x;
 	_y = y;
@@ -51,7 +51,7 @@ my_enums::Move  Block::Get_move()
 
 
 #pragma region Set
-void Block::Set_symbol(char & symbol)
+void Block::Set_symbol(char  symbol)
 {
 	_symbol = symbol;
 }

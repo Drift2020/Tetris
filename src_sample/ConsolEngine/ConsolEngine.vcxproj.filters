@@ -14,6 +14,12 @@
     <Filter Include="sources\Figures">
       <UniqueIdentifier>{7f7346c3-029a-489d-bdbe-6e3da9059c8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header\CreatorF">
+      <UniqueIdentifier>{8c5831c7-cef3-44a8-bec0-62be180b1c0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\CreatorF">
+      <UniqueIdentifier>{4320b045-7f82-4cee-a28c-90905c42a4b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseApp.cpp">
@@ -30,6 +36,30 @@
     </ClCompile>
     <ClCompile Include="Block.cpp">
       <Filter>sources\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure_T1.cpp">
+      <Filter>sources\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure_T2.cpp">
+      <Filter>sources\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure_T3.cpp">
+      <Filter>sources\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure_T4.cpp">
+      <Filter>sources\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure_T5.cpp">
+      <Filter>sources\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure_T6.cpp">
+      <Filter>sources\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure_T7.cpp">
+      <Filter>sources\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Creator.cpp">
+      <Filter>sources\CreatorF</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +80,30 @@
     </ClInclude>
     <ClInclude Include="Figure_Parent.h">
       <Filter>Header\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_T1.h">
+      <Filter>Header\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_T2.h">
+      <Filter>Header\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_T3.h">
+      <Filter>Header\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_T4.h">
+      <Filter>Header\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_T5.h">
+      <Filter>Header\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_T6.h">
+      <Filter>Header\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_T7.h">
+      <Filter>Header\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Creator.h">
+      <Filter>Header\CreatorF</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
