@@ -1,6 +1,6 @@
 #pragma 
 #include "Enums.h"
-
+//Базовый класс для хранения блоков
 
 class Block
 {

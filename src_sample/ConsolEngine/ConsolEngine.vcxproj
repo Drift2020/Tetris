@@ -91,6 +91,8 @@
     <ClCompile Include="BaseApp.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Creator.cpp" />
+    <ClCompile Include="Creator_T1.cpp" />
+    <ClCompile Include="Field.cpp" />
     <ClCompile Include="Figure_Parent.cpp" />
     <ClCompile Include="Figure_T1.cpp" />
     <ClCompile Include="Figure_T2.cpp" />
@@ -106,7 +108,9 @@
     <ClInclude Include="BaseApp.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Creator.h" />
+    <ClInclude Include="Creator_T1.h" />
     <ClInclude Include="Enums.h" />
+    <ClInclude Include="Field.h" />
     <ClInclude Include="Figure_Parent.h" />
     <ClInclude Include="Figure_T1.h" />
     <ClInclude Include="Figure_T2.h" />

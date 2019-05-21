@@ -4,6 +4,7 @@
 #include <list>
 class  Figure_Parent
 {
+	//главная фигура
 protected:
 	//кординаты это верхний левцй угол
 	int _x;
@@ -17,8 +18,8 @@ public:
 	Figure_Parent();
 	Figure_Parent(const int x, const int y, const int size, Block ** blocks);
 	virtual ~Figure_Parent();
-	Figure_Parent(const Figure_Parent& obj); // конструктор копирования
-	Figure_Parent& operator=(const Figure_Parent& obj); // оператор присваивания
+	//Figure_Parent(const Figure_Parent& obj); // конструктор копирования
+	//Figure_Parent& operator=(const Figure_Parent& obj); // оператор присваивания
 
 	void virtual Remove_block(int i);
 

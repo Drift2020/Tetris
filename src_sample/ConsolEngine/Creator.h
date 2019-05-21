@@ -5,8 +5,8 @@ class Creator
 public:
 	Figure_Parent virtual *FactoryMethod();
 	Creator();
-	Creator(const Creator& obj); 
-	Creator& operator=(const Creator& obj); 
+	/*Creator(const Creator& obj); 
+	Creator& operator=(const Creator& obj); */
 	virtual ~Creator();
 };
 

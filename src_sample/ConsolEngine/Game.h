@@ -3,21 +3,18 @@
 #pragma once
 
 #include "BaseApp.h"
-
+#include "Field.h"
+//класс игры
 class Game : public BaseApp
 {
 	typedef BaseApp Parent;
 
+	
+
 	private:
-		int mObj1XOld;
-		int mObj1YOld;
-		int mObj1X;
-		int mObj1Y;
+		int _scorre;
 
-		int mObj2X;
-		int mObj2Y;
-
-		bool mDirection;
+		Field * _my_field;
 
 	public:
 		Game();

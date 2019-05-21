@@ -2,61 +2,30 @@
 #include <stdio.h>
 
 #pragma region  system
+//Класс для хранения поля
 Field::Field()
 {
 	cF_start = COORD() = {0,0};
-	 cF_end = COORD() = { 18,22 };
-	_field = new char*[cF_end.Y];
+	 cF_end = COORD() = { 19,22 };
 
-	for (int y = 0; y < cF_end.Y; y++)
-	{
-		_field[y] = new char[cF_end.X];
-		for (int x = 0; x < cF_end.X; x++)
-		{
-			if(x==0||y==0||x== cF_end.X-1|| y == cF_end.Y-1)
-				_field[y][x] = '#';
-			else
-			_field[y][x] ='●';
-		}
-	}
+
+	Reset_symbol();
 	
 
 	//P
 	 cP_start = COORD() = { 16,0 };
-	 cP_end = COORD() = { 9,22 };
-
-
-	 for (int y = 0; y < cP_end.Y; y++)
-	 {
-		 _preview[y] = new char[cP_end.X];
-		 for (int x = 0; x < cP_end.X; x++)
-		 {
-			 if (x == 0 || y == 0 || x == cP_end.X - 1 || y == cP_end.Y - 1)
-				 _preview[y][x] = '#';
-			 else
-			 _preview[y][x] = ' ';
-		 }
-	 }
+	 cP_end = COORD() = { 11,22 };
+	 Reset_preview();
+	 
 	 //S
-	
-	
 
 
-	cS_start = COORD() = { 0,22 };
-	cS_end = COORD() = { 25,5 };
 
 
-	for (int y = 0; y < cS_end.Y; y++)
-	{
-		_scorre[y] = new char[cS_end.X];
-		for (int x = 0; x < cS_end.X; x++)
-		{
-			if (x == 0 || y == 0 || x == cS_end.X - 1 || y == cS_end.Y - 1)
-				_scorre[y][x] = '#';
-			else
-			_scorre[y][x] = ' ';
-		}
-	}
+	cS_start = COORD() = { 0,21 };
+	cS_end = COORD() = { 27,5 };
+
+	Reset_scorre();
 	
 }
 
@@ -102,44 +71,45 @@ Field::~Field()
 
 void Field::Reset_symbol()
 {
+	_field = new char*[cF_end.Y];
+
 	for (int y = 0; y < cF_end.Y; y++)
 	{
 		_field[y] = new char[cF_end.X];
-		for (int x = 0; x < cF_end.X; x++)
-		{
-			if (x == 0 || y == 0 || x == cF_end.X - 1 || y == cF_end.Y - 1)
-				_field[y][x] = '#';
-			else
-				_field[y][x] = '●';
-		}
+
+		if (y == 0 || y == cF_end.Y - 1)
+			_field[y] = "#################\0";
+		else
+			_field[y] = "#+++++++++++++++#\0";;
+
 	}
 }
 void Field::Reset_scorre()
 {
+	_scorre = new char*[cS_end.Y];
 	for (int y = 0; y < cS_end.Y; y++)
 	{
 		_scorre[y] = new char[cS_end.X];
-		for (int x = 0; x < cS_end.X; x++)
-		{
-			if (x == 0 || y == 0 || x == cS_end.X - 1 || y == cS_end.Y - 1)
-				_scorre[y][x] = '#';
-			else
-				_scorre[y][x] = ' ';
-		}
+
+		if (y == 0 || y == cS_end.Y - 1)
+			_scorre[y] = "#########################\0";
+		else
+			_scorre[y] = "#                       #\0";
+
 	}
 }
 void Field::Reset_preview()
 {
+	_preview = new char*[cP_end.Y];
 	for (int y = 0; y < cP_end.Y; y++)
 	{
 		_preview[y] = new char[cP_end.X];
-		for (int x = 0; x < cP_end.X; x++)
-		{
-			if (x == 0 || y == 0 || x == cP_end.X - 1 || y == cP_end.Y - 1)
-				_preview[y][x] = '#';
-			else
-				_preview[y][x] = ' ';
-		}
+
+		if (y == 0 || y == cP_end.Y - 1)
+			_preview[y] = "#########\0";
+		else
+			_preview[y] = "#       #\0";
+
 	}
 }
 #pragma endregion

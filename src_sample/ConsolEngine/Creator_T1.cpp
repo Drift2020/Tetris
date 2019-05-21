@@ -2,7 +2,7 @@
 
 
 
-Creator_T1::Creator_T1()
+Creator_T1::Creator_T1() :Creator()
 {
 }
 

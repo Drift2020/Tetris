@@ -66,6 +66,7 @@ BaseApp::~BaseApp()
 
 void BaseApp::SetChar(int x, int y, wchar_t c)
 {
+
 	mChiBuffer[x + (X_SIZE+1)*y].Char.UnicodeChar = c;
 	mChiBuffer[x + (X_SIZE+1)*y].Attributes = FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED;
 

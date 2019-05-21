@@ -1,5 +1,5 @@
 #pragma once
-
+//помощь для статуса
 namespace my_enums {
 
 

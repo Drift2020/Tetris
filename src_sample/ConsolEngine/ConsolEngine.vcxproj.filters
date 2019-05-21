@@ -58,6 +58,12 @@
     <ClCompile Include="Figure_T7.cpp">
       <Filter>sources\Figures</Filter>
     </ClCompile>
+    <ClCompile Include="Creator_T1.cpp">
+      <Filter>sources\CreatorF</Filter>
+    </ClCompile>
+    <ClCompile Include="Field.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
     <ClCompile Include="Creator.cpp">
       <Filter>sources\CreatorF</Filter>
     </ClCompile>
@@ -104,6 +110,12 @@
     </ClInclude>
     <ClInclude Include="Creator.h">
       <Filter>Header\CreatorF</Filter>
+    </ClInclude>
+    <ClInclude Include="Creator_T1.h">
+      <Filter>Header\CreatorF</Filter>
+    </ClInclude>
+    <ClInclude Include="Field.h">
+      <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
