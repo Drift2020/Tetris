@@ -27,6 +27,9 @@ public:
 	Field();
 	~Field();
 
+	void Reset_symbol();
+	void Reset_scorre();
+	void Reset_preview();
 	
 
 	void Set_symbol(const COORD i, const char s);
@@ -44,26 +47,25 @@ public:
 	void Set_cS_start(const  COORD i);
 	void Set_cS_end(const  COORD i);
 	
-	//G
-	void Set_cG_start(const COORD i);
-	void Set_cG_end(const COORD i);
-	
+
 	
 
 	
-	char Get_symbol(const int x, const int y);
+	char Get_symbol(const  COORD i);
+	char Get_scorre(const  COORD i);
+	char Get_preview(const  COORD i);
 
 	//F
-	int Get_xF();
-	int Get_yF();
+	COORD Get_cF_start();
+	COORD Get_cF_end();
 	
 	//P
-	int Get_xP();
-	int Get_yP();
+	COORD Get_cP_start();
+	COORD Get_cP_end();
 	
 	//S
-	int Get_xS();
-	int Get_yS();
+	COORD Get_cS_start();
+	COORD Get_cS_end();
 	
 
 };
