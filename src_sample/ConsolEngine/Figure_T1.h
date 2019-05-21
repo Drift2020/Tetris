@@ -4,7 +4,7 @@ class Figure_T1 :
 	public Figure_Parent
 {
 public:
-	Figure_T1(int x, int y, std::list<Block> blocks);
+	Figure_T1(const int x, const int y,const int size, Block** blocks);
 	Figure_T1();
 	 ~Figure_T1() override;
 
@@ -15,7 +15,7 @@ public:
 	 int  Get_Y() override;
 	 int  Get_size() override;
 
-	 void  Add_block(Block *& block) override;
+	 void  Add_block( Block * block) override;
 	 void  Set_X(int x) override;
 	 void  Set_Y(int y) override;
 	 void  Set_size(int s) override;

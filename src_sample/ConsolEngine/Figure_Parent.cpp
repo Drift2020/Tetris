@@ -8,23 +8,39 @@ Figure_Parent::Figure_Parent()
 {
 	 _x=0;
 	 _y=0;
-	 _blocks = std::list<Block>();
+	 _size = 0;
+	 _blocks = new Block*[];
+
+	
 }
 
-Figure_Parent::Figure_Parent(int x, int y, std::list<Block> blocks)
+Figure_Parent::Figure_Parent(const int x, const int y, const int size, Block ** blocks)
 {
 	 _x = x;
 	 _y = y;
 	 _blocks = blocks;
 }
 
+
+Figure_Parent::Figure_Parent(const Figure_Parent& obj) // конструктор копирования
+{
+	
+
+
+	
+}
+Figure_Parent& Figure_Parent::operator=(const Figure_Parent& obj) // оператор присваивания
+{
+	
+}
+
 Figure_Parent::~Figure_Parent()
 {
-	for (pb = _blocks.begin(); pb != _blocks.end(); pb++)
+	for (int i=0;i< this->_size;i++)
 	{
-		 delete (&*pb);
+		 delete _blocks[i];
 	}
-	_blocks.clear();
+	delete[]  _blocks;
 }
 
 //void Figure_Parent::Remove_block(int i)

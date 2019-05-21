@@ -43,7 +43,7 @@ void Game::UpdateF(float deltaTime)
 
 	//-----------------------------
 
-	SetChar(mObj2X, mObj2Y, L' ');//Само произвольное движение объекта
+	SetChar(mObj2X, mObj2Y, L' ');//Самопроизвольное движение объекта
 	if (mDirection)
 	{
 		mObj2X++;

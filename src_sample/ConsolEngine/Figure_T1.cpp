@@ -14,13 +14,13 @@ Figure_T1::Figure_T1() : Figure_Parent()
 	
 	
 		Block * temp = new  Block(0,0,'&',my_enums::Stop);
-		_blocks.push_back(*temp);
+		_blocks[0] = temp;
 		 temp = new  Block(0,1,'&',my_enums::Stop);
-		_blocks.push_back(*temp);
+		 _blocks[1] = temp;
 		temp = new  Block(0, 2, '&', my_enums::Stop);
-		_blocks.push_back(*temp);
+		_blocks[2] = temp;
 		 temp = new Block(1, 2, '&', my_enums::Stop);
-		_blocks.push_back(*temp);
+		 _blocks[3] = temp;
 	
 }
 
@@ -30,21 +30,30 @@ Figure_T1::~Figure_T1()
 	
 }
 
-Figure_T1::Figure_T1(int x, int y, std::list<Block> blocks) :Figure_Parent(x, y, blocks)
+Figure_T1::Figure_T1(const int x, const int y, const int size, Block ** blocks) :Figure_Parent(x, y,size, blocks)
 {
 	
 }
 void Figure_T1::Remove_block(int i)
 {
-	if (i > 0 && _blocks.size() > 0)
+	if (i > 0 && _size > 0)
 	{
-		pb = _blocks.begin();
-		for (int i1 = 0; i1 < i; i++)
+		
+		Block** temp = new Block*[_size - 1];
+
+		for (int i = 0; i < _size-1; i++)
 		{
-			pb++;
+			temp[i] = _blocks[i];
 		}
 
-		_blocks.erase(pb, pb++);
+
+		for (int i = 0; i < _size ; i++)
+		{
+			delete _blocks[i];
+		}
+		_size--;
+
+		_blocks = temp;
 
 	}
 }
@@ -57,12 +66,7 @@ void Figure_T1::Remove_block(int i)
 #pragma region get
 Block Figure_T1::Get_block(int i)
 {
-	pb = _blocks.begin();
-	for (int _i = 0; _i < i; _i++)
-	{
-		pb++;
-	}
-	return *pb;
+	return *_blocks[i];
 }
 int Figure_T1::Get_X()
 {
@@ -80,7 +84,7 @@ int   Figure_T1::Get_size() {
 
 
 #pragma region set
-void Figure_T1::Add_block(Block *& block)
+void Figure_T1::Add_block(Block * block)
 {
 
 }
