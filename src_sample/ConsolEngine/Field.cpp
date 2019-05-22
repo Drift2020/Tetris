@@ -79,7 +79,7 @@ void Field::Reset_symbol()
 			if (y == 0 || y == cF_end.Y - 1|| x == 0 || x == cF_end.X - 1)
 				_field[y][x] = '#';
 			else
-				_field[y][x] = '+'; 
+				_field[y][x] = '.'; 
 
 
 		}
@@ -93,11 +93,14 @@ void Field::Reset_scorre()
 	for (int y = 0; y < cS_end.Y; y++)
 	{
 		_scorre[y] = new char[cS_end.X];
-
-		if (y == 0 || y == cS_end.Y - 1)
-			_scorre[y] = "#########################\0";
-		else
-			_scorre[y] = "#                       #\0";
+		for (int x = 0; x < cS_end.X; x++)
+		{
+			if (y == 0 || y == cS_end.Y - 1|| x == 0 || x == cS_end.X - 1)
+				_scorre[y][x] = '#';
+			else
+				_scorre[y][x] = ' ';
+		}
+	
 
 	}
 }
@@ -107,12 +110,13 @@ void Field::Reset_preview()
 	for (int y = 0; y < cP_end.Y; y++)
 	{
 		_preview[y] = new char[cP_end.X];
-
-		if (y == 0 || y == cP_end.Y - 1)
-			_preview[y] = "#########\0";
-		else
-			_preview[y] = "#       #\0";
-
+		for (int x = 0; x < cP_end.X; x++)
+		{
+			if (y == 0 || y == cP_end.Y - 1|| x == 0 || x == cP_end.X - 1)
+				_preview[y][x] = '#';
+			else
+				_preview[y][x] = ' ';
+		}
 	}
 }
 #pragma endregion
