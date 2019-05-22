@@ -2,6 +2,49 @@
 
 #include "Game.h"
 
+void Game::Print_field()
+{
+	for (int y = 0; y < this->_my_field->Get_cF_end().Y; y++)
+	{
+		for (int x = 0; x < _my_field->Get_cF_end().X; x++)
+		{
+
+
+			SetChar(x, y, static_cast<wchar_t>(_my_field->Get_symbol(COORD() = { static_cast<short>(x),static_cast<short>(y) })));
+		}
+	}
+}
+
+void Game::Print_scorre()
+{
+
+	for (int y = 0; y < this->_my_field->Get_cS_end().Y; y++)
+	{
+		for (int x = 0; x < _my_field->Get_cS_end().X; x++)
+		{
+
+
+			SetChar(_my_field->Get_cS_start().X + x, _my_field->Get_cS_start().Y + y, static_cast<wchar_t>(_my_field->Get_scorre(COORD() = { static_cast<short>(x),static_cast<short>(y) })));
+
+
+		}
+	}
+
+}
+
+void Game::Print_preview()
+{
+	for (int y = 0; y < this->_my_field->Get_cP_end().Y; y++)
+	{
+		for (int x = 0; x < _my_field->Get_cP_end().X; x++)
+		{
+
+
+			SetChar(_my_field->Get_cP_start().X + x, _my_field->Get_cP_start().Y + y, static_cast<wchar_t>(_my_field->Get_preview(COORD() = { static_cast<short>(x),static_cast<short>(y) })));
+		}
+	}
+}
+
 Game::Game() : Parent(100, 80)
 {
 	
@@ -33,38 +76,11 @@ void Game::KeyPressed(int btnCode)//передвижение объекта
 void Game::UpdateF(float deltaTime)
 {
 	
-	for (int y = 0; y < this->_my_field->Get_cF_end().Y; y++)
-	{
-		for (int x = 0; x < _my_field->Get_cF_end().X; x++)
-		{
-			
+	Print_field();
+		
+	Print_preview();
 
-			SetChar(x, y, static_cast<wchar_t>(_my_field->Get_symbol(COORD() = { static_cast<short>(x),static_cast<short>(y) })));
-		}
-	}
-	
-	for (int y = 0; y < this->_my_field->Get_cP_end().Y; y++)
-	{
-		for (int x = 0; x < _my_field->Get_cP_end().X; x++)
-		{
-
-
-			SetChar(_my_field->Get_cP_start().X+x, _my_field->Get_cP_start().Y + y, static_cast<wchar_t>(_my_field->Get_preview(COORD() = { static_cast<short>(x),static_cast<short>(y) })));
-		}
-	}
-
-
-	for (int y = 0; y < this->_my_field->Get_cS_end().Y; y++)
-	{
-		for (int x = 0; x < _my_field->Get_cS_end().X; x++)
-		{
-
-
-			SetChar(_my_field->Get_cS_start().X+x, _my_field->Get_cS_start().Y+ y, static_cast<wchar_t>(_my_field->Get_scorre(COORD() = { static_cast<short>(x),static_cast<short>(y) })));
-
-
-		}
-	}
+	Print_scorre();
 
 
 	//SetChar(mObj1XOld, mObj1YOld, L' ');

@@ -13,8 +13,10 @@ class Game : public BaseApp
 
 	private:
 		int _scorre;
-
 		Field * _my_field;
+		void Print_field();
+		void Print_scorre();
+		void Print_preview();
 
 	public:
 		Game();
