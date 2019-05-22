@@ -4,6 +4,8 @@
 
 #include "BaseApp.h"
 #include "Field.h"
+#include "Creator.h"
+#include "Figure_Parent.h"
 //класс игры
 class Game : public BaseApp
 {
@@ -13,10 +15,47 @@ class Game : public BaseApp
 
 	private:
 		int _scorre;
+		int _size_creators;
+		int _count_figures;
 		Field * _my_field;
+		Creator ** _creators;
+		Figure_Parent ** _parent;
+
+		Figure_Parent * _my_figure;
+		Figure_Parent * _old_my_figure;
+#pragma region print
+
 		void Print_field();
 		void Print_scorre();
 		void Print_preview();
+
+#pragma endregion
+
+#pragma region Create
+		Figure_Parent * Create_figure();
+		void Add_figure(Figure_Parent * b);
+
+		void Print_my_figure_in_field();
+#pragma endregion
+
+	
+
+
+
+#pragma region Set
+
+
+
+#pragma endregion
+
+
+#pragma region Get
+
+
+
+#pragma endregion
+
+		
 
 	public:
 		Game();

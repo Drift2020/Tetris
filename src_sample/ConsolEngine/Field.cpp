@@ -6,9 +6,7 @@
 Field::Field()
 {
 	cF_start = COORD() = {0,0};
-	 cF_end = COORD() = { 19,22 };
-
-
+	cF_end = COORD() = { 19,22 };
 	Reset_symbol();
 	
 
@@ -24,7 +22,6 @@ Field::Field()
 
 	cS_start = COORD() = { 0,21 };
 	cS_end = COORD() = { 27,5 };
-
 	Reset_scorre();
 	
 }
@@ -75,12 +72,18 @@ void Field::Reset_symbol()
 
 	for (int y = 0; y < cF_end.Y; y++)
 	{
-		_field[y] = new char[cF_end.X];
+		_field[y] = new char [cF_end.X];
 
-		if (y == 0 || y == cF_end.Y - 1)
-			_field[y] = "#################\0";
-		else
-			_field[y] = "#+++++++++++++++#\0";;
+		for (int x = 0; x < cF_end.X; x++)
+		{
+			if (y == 0 || y == cF_end.Y - 1|| x == 0 || x == cF_end.X - 1)
+				_field[y][x] = '#';
+			else
+				_field[y][x] = '+'; 
+
+
+		}
+	
 
 	}
 }

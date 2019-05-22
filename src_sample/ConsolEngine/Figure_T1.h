@@ -5,12 +5,13 @@ class Figure_T1 :
 {
 public:
 	Figure_T1(const int x, const int y,const int size, Block** blocks);
+	Figure_T1(int x, int y);
 	Figure_T1();
 	 ~Figure_T1() override;
 
 	 void  Remove_block(int i) override;
 
-	 Block  Get_block(int i) override;
+	 Block  * Get_block (int i) override;
 	 int  Get_X() override;
 	 int  Get_Y() override;
 	 int  Get_size() override;

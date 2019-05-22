@@ -1,6 +1,10 @@
 // Copyright 2009-2014 Blam Games, Inc. All Rights Reserved.
 
 #include "Game.h"
+#include "Creator.h"
+#include "Creator_T1.h"
+#include "Figure_Parent.h"
+#pragma region Print
 
 void Game::Print_field()
 {
@@ -45,11 +49,82 @@ void Game::Print_preview()
 	}
 }
 
-Game::Game() : Parent(100, 80)
+
+
+#pragma endregion
+
+Game::Game() : Parent(26, 25)
 {
-	
+	_size_creators = 1;
+	_count_figures = 1;
 	_my_field = new Field();
+	_creators = new Creator*[_size_creators];
+
+	_creators[0] = new  Creator_T1();
+
+
+	_parent = new Figure_Parent*[_count_figures];
+
+	_parent[0] = Create_figure();
+
+	_my_figure = _parent[0];
+	_old_my_figure = nullptr;
 }
+
+#pragma region Create
+Figure_Parent * Game::Create_figure()
+{
+	int random_number = 0 + rand() % _size_creators;
+	return _creators[random_number]->FactoryMethod();
+}
+
+void Game::Add_figure(Figure_Parent * b)
+{
+	Figure_Parent** temp = new Figure_Parent*[_count_figures + 1];
+	
+	for (int i = 0; i < _count_figures; i++)
+	{
+		temp[i] = _parent[i];
+	}
+	temp[_count_figures + 1] = b;
+
+	for (int i = 0; i < _count_figures; i++)
+	{
+		delete _parent[i];
+	}
+	delete[] _parent;
+
+	_count_figures++;
+	_parent = new Figure_Parent*[_count_figures];
+
+
+	for (int i = 0; i < _count_figures; i++)
+	{
+		_parent[i] = temp[i];
+	}
+	
+
+}
+
+void Game::Print_my_figure_in_field()
+{
+	if(_old_my_figure!=nullptr)
+	for (int i = 0; i < _old_my_figure->Get_size(); i++)
+	{
+		_my_field->Set_symbol(COORD() = { static_cast<short>(_old_my_figure->Get_block(i)->Get_X()),static_cast<short>(_old_my_figure->Get_block(i)->Get_Y()) }, '+');
+	}
+
+	_old_my_figure = _my_figure;
+
+	for (int i = 0; i < _my_figure->Get_size(); i++)
+	{
+		_my_field->Set_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(i)->Get_X()), static_cast<short>(_my_figure->Get_block(i)->Get_Y()) }, _my_figure->Get_block(i)->Get_symbol());
+	}
+//после должно быть падение фигуры
+}
+
+#pragma endregion
+
 
 void Game::KeyPressed(int btnCode)//передвижение объекта
 {
@@ -82,6 +157,14 @@ void Game::UpdateF(float deltaTime)
 
 	Print_scorre();
 
+	if (_my_figure == nullptr)
+	{
+		Figure_Parent * temp = Create_figure();
+		Add_figure(temp);
+		_my_figure = temp;
+	}
+
+	Print_my_figure_in_field();
 
 	//SetChar(mObj1XOld, mObj1YOld, L' ');
 	//SetChar(mObj1X, mObj1Y, L'O');

@@ -11,7 +11,7 @@ Figure_T1::Figure_T1() : Figure_Parent()
 {
 	_size = 4;
 
-	
+	_blocks = new Block*[_size];
 	
 		Block * temp = new  Block(0,0,'&',my_enums::Stop);
 		_blocks[0] = temp;
@@ -22,6 +22,23 @@ Figure_T1::Figure_T1() : Figure_Parent()
 		 temp = new Block(1, 2, '&', my_enums::Stop);
 		 _blocks[3] = temp;
 	
+}
+
+Figure_T1::Figure_T1(int x,int y) : Figure_Parent(x,y)
+{
+	_size = 4;
+
+	_blocks = new Block *[_size];
+
+	Block * temp = new  Block(x+0, y+0, '&', my_enums::Stop);
+	_blocks[0] = temp;
+	temp = new  Block(x+0, y+1, '&', my_enums::Stop);
+	_blocks[1] = temp;
+	temp = new  Block(x+0, y+2, '&', my_enums::Stop);
+	_blocks[2] = temp;
+	temp = new Block(x+1, y+2, '&', my_enums::Stop);
+	_blocks[3] = temp;
+
 }
 
 
@@ -64,9 +81,9 @@ void Figure_T1::Remove_block(int i)
 
 
 #pragma region get
-Block Figure_T1::Get_block(int i)
+Block *Figure_T1::Get_block(int i)
 {
-	return *_blocks[i];
+	return _blocks[i];
 }
 int Figure_T1::Get_X()
 {
