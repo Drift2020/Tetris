@@ -86,7 +86,7 @@ Figure_Parent & Game::Create_figure(int x, int y)
 void Game::Add_figure(Figure_Parent * b)
 {
 	Figure_Parent** temp = new Figure_Parent*[_count_figures + 1];
-	
+
 	for (int i = 0; i < _count_figures; i++)
 	{
 
@@ -108,30 +108,30 @@ void Game::Add_figure(Figure_Parent * b)
 
 	for (int i = 0; i < _count_figures; i++)
 	{
-		
-		_parent[i] =new Figure_Parent(*temp[i]);
+
+		_parent[i] = new Figure_Parent(*temp[i]);
 	}
-	
+	b = _parent[_count_figures - 1];
 
 }
 
 void Game::Print_my_figure_in_field()
 {
-	if(_old_my_figure!=nullptr)
-	for (int i = 0; i < _old_my_figure->Get_size(); i++)
-	{
-		_my_field->Set_symbol(COORD() = { static_cast<short>(_old_my_figure->Get_block(i)->Get_X()+ _old_my_figure->Get_X()),
-			static_cast<short>(_old_my_figure->Get_block(i)->Get_Y() + _old_my_figure->Get_Y()) }, '.');
-	}
+	if (_old_my_figure != nullptr)
+		for (int i = 0; i < _old_my_figure->Get_size(); i++)
+		{
+			_my_field->Set_symbol(COORD() = { static_cast<short>(_old_my_figure->Get_block(i)->Get_X() + _old_my_figure->Get_X()),
+				static_cast<short>(_old_my_figure->Get_block(i)->Get_Y() + _old_my_figure->Get_Y()) }, '.');
+		}
 
-	
+
 
 	for (int i = 0; i < _my_figure->Get_size(); i++)
 	{
-		_my_field->Set_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(i)->Get_X()+ _my_figure->Get_X()),
+		_my_field->Set_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(i)->Get_X() + _my_figure->Get_X()),
 			static_cast<short>(_my_figure->Get_block(i)->Get_Y() + _my_figure->Get_Y()) }, _my_figure->Get_block(i)->Get_symbol());
 	}
-//после должно быть падение фигуры
+	//после должно быть падение фигуры
 }
 
 #pragma endregion
@@ -141,7 +141,7 @@ void Game::Move_my_figure()
 {
 	if (_my_figure != nullptr)
 	{
-	
+
 		if (!time_my_figure)
 		{
 			start_time_figure = std::chrono::system_clock::now();
@@ -151,12 +151,12 @@ void Game::Move_my_figure()
 		end_time_figure = std::chrono::system_clock::now();
 
 		std::chrono::duration<float> elapsed_seconds = end_time_figure - start_time_figure;
-		
+
 		if (elapsed_seconds.count() > speed)
 		{
 			delete _old_my_figure;
 			_old_my_figure = new Figure_Parent(*_my_figure);
-		
+
 			_my_figure->Move_on(0, 1);
 
 			Print_my_figure_in_field();
@@ -169,7 +169,7 @@ void Game::Stop_block()
 	for (int i = 0; i < _my_figure->Get_size(); i++)
 	{
 		//плюс 1 так как локальные y начинается с нуля
-		if (this->_my_field->Get_cF_end().Y - 1 == (_my_figure->Get_block(i)->Get_Y()+ _my_figure->Get_Y())+1)
+		if (this->_my_field->Get_cF_end().Y - 1 == (_my_figure->Get_block(i)->Get_Y() + _my_figure->Get_Y()) + 1)
 		{
 			_my_figure->Set_state(my_enums::Stop);
 			for (int i = 0; i < _my_figure->Get_size(); i++)
@@ -177,7 +177,34 @@ void Game::Stop_block()
 				_my_figure->Get_block(i)->Set_move(my_enums::Stop);
 			}
 			_my_figure = nullptr;
-			break;
+			return;
+		}
+	}
+
+	for (int y = 0; y < this->_count_figures; y++)
+	{
+		for (int x= 0; x < this->_parent[y]->Get_size(); x++)
+		{
+			for (int x2 = 0; x2 < _my_figure->Get_size(); x2++)
+			{
+				int n1 = _parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() + 1;
+				int n2 = _my_figure->Get_block(x2)->Get_Y() + _my_figure->Get_Y() + 1;
+				int n3 = _parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() + 1;
+				int n4 = _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() + 1;
+				if (_parent[y]!=_my_figure &&
+					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y()+1 == _my_figure->Get_block(x2)->Get_Y()+ _my_figure->Get_Y()+1&&
+					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() + 1 == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X()+1)
+				{
+
+					_my_figure->Set_state(my_enums::Stop);
+					for (int i = 0; i < _my_figure->Get_size(); i++)
+					{
+						_my_figure->Get_block(i)->Set_move(my_enums::Stop);
+					}
+					_my_figure = nullptr;
+					return;
+				}
+			}
 		}
 	}
 }
@@ -241,6 +268,7 @@ void Game::UpdateF(float deltaTime)
 	
 	_my_field->Set_preview(_my_figure->Get_state_block());
 	Print_preview();
+
 
 	Stop_block();
 
