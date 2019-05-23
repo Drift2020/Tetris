@@ -15,6 +15,7 @@ public:
 	 int  Get_X() override;
 	 int  Get_Y() override;
 	 int  Get_size() override;
+	 my_enums::Block  Get_state_block() override;
 
 	 void  Add_block( Block * block) override;
 	 void  Set_X(int x) override;

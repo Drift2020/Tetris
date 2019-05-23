@@ -11,7 +11,7 @@ Figure_Parent::Figure_Parent()
 	 this->_size = 0;
 	 this->_blocks = nullptr;
 	 this->_state = my_enums::Down;
-	 _state_rotate = my_enums::DOWN;
+	  this->_state_rotate = my_enums::DOWN;
 	
 }
 
@@ -23,14 +23,14 @@ Figure_Parent::Figure_Parent(int x,int y)
 	this->_size = 0;
 	this->_state = my_enums::Down;
 	this->_blocks = nullptr;
-	_state_rotate = my_enums::DOWN;
+	this->_state_rotate = my_enums::DOWN;
 }
 
  Figure_Parent::Figure_Parent(const Figure_Parent & obj)
 {
 	this->_x = obj._x;
 	this->_y = obj._y;
-
+	this->_state_block = obj._state_block;
 	this->_state = obj._state;
 	this->_size = obj._size;
 	this->_state_rotate = obj._state_rotate;
@@ -49,7 +49,7 @@ Figure_Parent::Figure_Parent(Figure_Parent && obj)
 {
 	this->_x = obj._x;
 	this->_y = obj._y;
-
+	this->_state_block = obj._state_block;
 	this->_state = obj._state;
 	this->_size = obj._size;
 	this->_state_rotate = obj._state_rotate;
@@ -66,7 +66,7 @@ Figure_Parent::Figure_Parent(Figure_Parent && obj)
 	obj._y=0;
 	obj._state_rotate = my_enums::NONE;
 	obj._state= my_enums::None;
-
+	obj._state_block=my_enums::NoneT;
 	for (int i = 0; i < obj._size; i++)
 	{
 		if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
@@ -84,7 +84,7 @@ Figure_Parent & Figure_Parent::operator=(Figure_Parent && obj)
 
 		this->_x = obj._x;
 		this->_y = obj._y;
-
+		this->_state_block = obj._state_block;
 		this->_state = obj._state;
 		this->_size = obj._size;
 		this->_state_rotate = obj._state_rotate;
@@ -100,7 +100,7 @@ Figure_Parent & Figure_Parent::operator=(Figure_Parent && obj)
 		obj._state_rotate = my_enums::NONE;
 		obj._x = 0;
 		obj._y = 0;
-
+		obj._state_block= my_enums::NoneT;
 		obj._state = my_enums::None;
 
 		for (int i = 0; i < obj._size; i++)
@@ -122,7 +122,7 @@ Figure_Parent & Figure_Parent::operator=(const Figure_Parent & obj)
 
 		this->_x = obj._x;
 		this->_y = obj._y;
-
+		this->_state_block = obj._state_block;
 		this->_state = obj._state;
 		this->_size = obj._size;
 		this->_state_rotate = obj._state_rotate;
@@ -216,6 +216,13 @@ my_enums::Move Figure_Parent::Get_state()
 {
 	return this->_state;
 }
+
+my_enums::Block Figure_Parent::Get_state_block()
+{
+	return _state_block;
+}
+
+
 #pragma endregion
 
 

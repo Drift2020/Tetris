@@ -181,12 +181,20 @@ void Game::Stop_block()
 		}
 	}
 }
+
+void Game::move_my_figure_mine(int x,int y)
+{
+	delete _old_my_figure;
+	_old_my_figure = new Figure_Parent(*_my_figure);
+	_my_figure->Move_on(x, y);
+	Print_my_figure_in_field();
+}
 #pragma endregion
 
 
 void Game::KeyPressed(int btnCode)//передвижение объекта
 {
-	if (btnCode == 224) 
+	if (btnCode == 80) 
 		speed = run;
 	else  
 		speed = normal;
@@ -199,6 +207,16 @@ void Game::KeyPressed(int btnCode)//передвижение объекта
 		Print_my_figure_in_field();
 
 	}
+	else if (btnCode == 77)
+	{
+		move_my_figure_mine(1, 0);
+		
+	}
+	else if (btnCode == 75)
+	{
+		move_my_figure_mine(-1, 0);
+	}
+
 	
 
 	
@@ -209,7 +227,6 @@ void Game::UpdateF(float deltaTime)
 	
 	Print_field();
 		
-	Print_preview();
 
 	Print_scorre();
 	_my_field->Set_scorre(_scorre,2);
@@ -221,31 +238,14 @@ void Game::UpdateF(float deltaTime)
 		_my_figure = temp;
 	}
 
+	
+	_my_field->Set_preview(_my_figure->Get_state_block());
+	Print_preview();
+
 	Stop_block();
 
 	Move_my_figure();
 
 	speed = normal;
-	//SetChar(mObj1XOld, mObj1YOld, L' ');
-	//SetChar(mObj1X, mObj1Y, L'O');
-
-	//mObj1XOld = mObj1X;
-	//mObj1YOld = mObj1Y;
-
-	////-----------------------------
-
-	//SetChar(mObj2X, mObj2Y, L' ');//Самопроизвольное движение объекта
-	//if (mDirection)
-	//{
-	//	mObj2X++;
-	//	if (mObj2X == 40)
-	//		mDirection = false;
-	//}
-	//else
-	//{
-	//	mObj2X--;
-	//	if (mObj2X == 10)
-	//		mDirection = true;
-	//}
-	//SetChar(mObj2X, mObj2Y, L'F');
+	
 }

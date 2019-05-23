@@ -5,21 +5,23 @@ namespace my_enums {
 
 	enum Rotate
 	{
+		NONE=-1,
 		UP,
 		DOWN,
 		Left,
-		Right,
-		NONE
+		Right
+		
 	};
 
 	enum Move {
+		None=-1,
 		Down,
 		RunDown,
 		Stop,
-		None
+		
 	};
 
 	enum Block {
-		T1,T2,T3,T4,T5,T6,T7
+		NoneT=-1,T1,T2,T3,T4,T5,T6,T7
 	};
 }

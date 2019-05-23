@@ -5,12 +5,14 @@
 //Класс для хранения поля
 Field::Field()
 {
+	_field = nullptr;
 	cF_start = COORD() = {0,0};
 	cF_end = COORD() = { 19,22 };
 	Reset_symbol();
 	
 
 	//P
+	_preview = nullptr;
 	 cP_start = COORD() = { 16,0 };
 	 cP_end = COORD() = { 11,22 };
 	 Reset_preview();
@@ -19,7 +21,7 @@ Field::Field()
 
 
 
-
+	 _scorre = nullptr;
 	cS_start = COORD() = { 0,21 };
 	cS_end = COORD() = { 27,5 };
 	Reset_scorre();
@@ -68,6 +70,14 @@ Field::~Field()
 
 void Field::Reset_symbol()
 {
+	if (_field != nullptr)
+	{
+		for (int y = 0; y < cF_end.Y; y++)
+		{
+			delete _field[y] ;
+		}
+		delete _field;
+	}
 	_field = new char*[cF_end.Y];
 
 	for (int y = 0; y < cF_end.Y; y++)
@@ -89,6 +99,14 @@ void Field::Reset_symbol()
 }
 void Field::Reset_scorre()
 {
+	if (_scorre != nullptr)
+	{
+		for (int y = 0; y < cS_end.Y; y++)
+		{
+			delete[] _scorre[y] ;
+		}
+		delete[] _scorre;
+	}
 	_scorre = new char*[cS_end.Y];
 	for (int y = 0; y < cS_end.Y; y++)
 	{
@@ -106,6 +124,19 @@ void Field::Reset_scorre()
 }
 void Field::Reset_preview()
 {
+	if (_preview != nullptr)
+	{
+		for (int y = 0; y < cP_end.Y; y++)
+		{
+			
+				delete[]_preview[y];
+			
+		}
+		delete[]_preview;
+
+	}
+
+
 	_preview = new char*[cP_end.Y];
 	for (int y = 0; y < cP_end.Y; y++)
 	{
@@ -147,24 +178,63 @@ void Field::Set_preview(my_enums::Block b) {
 	case my_enums::T1:
 
 		
-		_preview[3][4]='▣';
-		_preview[4][4] = '▣';
-		_preview[5][4] = '▣';
-		_preview[5][5] = '▣';
+		_preview[3][4]='&';
+		_preview[4][4] = '&';
+		_preview[5][4] = '&';
+		_preview[5][5] = '&';
 			
 
 		break;
 	case my_enums::T2:
+
+
+		_preview[3][5] = '&';
+		_preview[4][5] = '&';
+		_preview[5][5] = '&';
+		_preview[5][4] = '&';
 		break;
 	case my_enums::T3:
+
+		
+		_preview[3][4] = '&';
+		_preview[4][4] = '&';
+		_preview[4][5] = '&';
+		_preview[4][3] = '&';
+
+
 		break;
 	case my_enums::T4:
+
+		_preview[3][4] = '&';
+		_preview[4][4] = '&';
+		_preview[5][4] = '&';
+		_preview[6][4] = '&';
 		break;
 	case my_enums::T5:
+
+		
+
+		_preview[3][4] = '&';
+		_preview[3][5] = '&';
+		_preview[4][4] = '&';
+		_preview[4][5] = '&';
 		break;
 	case my_enums::T6:
+		
+
+		_preview[3][4] = '&';
+		_preview[3][5] = '&';
+		_preview[4][4] = '&';
+		_preview[4][3] = '&';
 		break;
 	case my_enums::T7:
+
+
+		//
+		_preview[3][4] = '&';
+		_preview[3][3] = '&';
+		_preview[4][4] = '&';
+		_preview[4][5] = '&';
 		break;
 	default:
 		Reset_preview();

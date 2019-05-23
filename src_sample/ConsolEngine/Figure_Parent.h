@@ -12,6 +12,7 @@ protected:
 	
 	my_enums::Move _state;
 	my_enums::Rotate _state_rotate;
+	my_enums::Block _state_block;
 	Block** _blocks;
 	
 	int _size;
@@ -48,6 +49,7 @@ public:
 	int virtual Get_Y();
 	int virtual Get_size();
 	my_enums::Move virtual Get_state();
+	my_enums::Block virtual Get_state_block();
 #pragma endregion
 
 	

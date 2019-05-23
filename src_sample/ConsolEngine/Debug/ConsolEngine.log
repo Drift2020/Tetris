@@ -1,3 +1,5 @@
 ﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  Game.cpp
+  Field.cpp
+d:\documents\github\tetris\src_sample\consolengine\field.cpp(165): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
   ConsolEngine.vcxproj -> D:\Documents\GitHub\Tetris\src_sample\Debug\ConsolEngine.exe

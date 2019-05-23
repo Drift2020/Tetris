@@ -10,7 +10,7 @@
 Figure_T1::Figure_T1() : Figure_Parent()
 {
 	_size = 4;
-
+	this->_state_block = my_enums::T1;
 	_blocks = new Block*[_size];
 	
 		Block * temp = new  Block(0,0,'&',my_enums::Down);
@@ -27,7 +27,7 @@ Figure_T1::Figure_T1() : Figure_Parent()
 Figure_T1::Figure_T1(int x,int y) : Figure_Parent(x,y)
 {
 	_size = 4;
-
+	this->_state_block = my_enums::T1;
 	_blocks = new Block *[_size];
 
 
@@ -44,7 +44,7 @@ Figure_T1::Figure_T1(int x,int y) : Figure_Parent(x,y)
 
 Figure_T1::~Figure_T1()
 {
-	
+
 }
 
 Figure_T1::Figure_T1(const int x, const int y, const int size, Block ** blocks) :Figure_Parent(x, y,size, blocks)
@@ -52,90 +52,6 @@ Figure_T1::Figure_T1(const int x, const int y, const int size, Block ** blocks) 
 	
 }
 
-
-//Figure_T1::Figure_T1(const Figure_T1 & obj):Figure_Parent(obj)
-//{
-//	
-//
-//}
-//
-//Figure_T1::Figure_T1(Figure_T1 && obj) :Figure_Parent(obj)
-//{
-//	
-//}
-//
-//Figure_T1 & Figure_T1::operator=(Figure_T1 && obj)
-//{
-//	if (this != &obj)
-//	{
-//
-//		this->_x = obj._x;
-//		this->_y = obj._y;
-//
-//		this->_state = obj._state;
-//		this->_size = obj._size;
-//
-//		for (int i = 0; i < this->_size; i++)
-//		{
-//			if (_blocks != nullptr && _blocks[i] != nullptr)
-//				delete _blocks[i];
-//		}
-//		delete[]_blocks;
-//
-//		_blocks = new Block*[_size];
-//
-//		for (int i = 0; i < _size; i++)
-//		{
-//			_blocks[i] = obj._blocks[i];
-//		}
-//
-//
-//		obj._x = 0;
-//		obj._y = 0;
-//
-//		obj._state = my_enums::None;
-//
-//		for (int i = 0; i < obj._size; i++)
-//		{
-//			if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
-//				delete obj._blocks[i];
-//		}
-//		delete[]obj._blocks;
-//
-//		obj._size = 0;
-//	}
-//	return *this;
-//}
-//
-//Figure_T1 & Figure_T1::operator=(const Figure_T1 & obj)
-//{
-//	if (this != &obj)
-//	{
-//
-//		this->_x = obj._x;
-//		this->_y = obj._y;
-//
-//		this->_state = obj._state;
-//		this->_size = obj._size;
-//
-//		for (int i = 0; i < this->_size; i++)
-//		{
-//			if (_blocks != nullptr && _blocks[i] != nullptr)
-//				delete _blocks[i];
-//		}
-//		delete[]_blocks;
-//
-//		_blocks = new Block*[_size];
-//
-//		for (int i = 0; i < _size; i++)
-//		{
-//			_blocks[i] = obj._blocks[i];
-//		}
-//
-//
-//	}
-//	return *this;
-//}
 
 void Figure_T1::Remove_block(int i)
 {
@@ -182,6 +98,10 @@ int Figure_T1::Get_Y()
 
 int   Figure_T1::Get_size() {
 	return _size;
+}
+my_enums::Block Figure_T1::Get_state_block()
+{
+	return _state_block;
 }
 #pragma endregion
 

@@ -53,6 +53,7 @@ class Game : public BaseApp
 
 		void Stop_block();
 
+		void move_my_figure_mine(int x, int y);
 #pragma endregion
 
 
