@@ -2,7 +2,7 @@
 
 #pragma once
 #include <chrono>
-#include <ctime> 
+#include <ctime>
 #include "BaseApp.h"
 #include "Field.h"
 #include "Creator.h"
@@ -37,7 +37,7 @@ class Game : public BaseApp
 #pragma endregion
 
 #pragma region Create
-		Figure_Parent * Create_figure();
+		Figure_Parent &Create_figure(int x, int y);
 		void Add_figure(Figure_Parent * b);
 
 		void Print_my_figure_in_field();

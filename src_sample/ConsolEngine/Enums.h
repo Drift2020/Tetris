@@ -5,6 +5,8 @@ namespace my_enums {
 
 	enum Rotate
 	{
+		UP,
+		DOWN,
 		Left,
 		Right,
 		NONE

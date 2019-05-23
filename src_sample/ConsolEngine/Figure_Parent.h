@@ -11,6 +11,7 @@ protected:
 	int _y;
 	
 	my_enums::Move _state;
+	my_enums::Rotate _state_rotate;
 	Block** _blocks;
 	
 	int _size;
@@ -62,7 +63,7 @@ public:
 #pragma region figure
 	void  Move_on(int x, int y);
 	void  Move_to(int x, int y);
-	void  Rotate(my_enums::Rotate r);
+	void  Rotate();
 #pragma endregion
 
 	

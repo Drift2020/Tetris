@@ -22,12 +22,12 @@ public:
 	 void  Set_size(int s) override;
 
 
-	 Figure_T1(const Figure_T1& obj);// Конструктор копирования------------------
+	 //Figure_T1(const Figure_T1& obj);// Конструктор копирования------------------
 
-	 Figure_T1(Figure_T1 && obj);//кoнструктор переноса-----------------------------------
+	 //Figure_T1(Figure_T1 && obj);//кoнструктор переноса-----------------------------------
 
-	 Figure_T1  &operator =(Figure_T1  && obj) ;//Присв с переносом --------------------------
+	 //Figure_T1  &operator =(Figure_T1  && obj) ;//Присв с переносом --------------------------
 
-	 Figure_T1  &operator =(const Figure_T1  & obj);//Присв с копированием --------------------------
+	 //Figure_T1  &operator =(const Figure_T1  & obj);//Присв с копированием --------------------------
 };
 

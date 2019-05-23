@@ -2,7 +2,7 @@
 
 
 
-Figure_Parent * Creator::FactoryMethod()
+Figure_Parent * Creator::FactoryMethod(int x,int y)
 {
 	return nullptr;
 }

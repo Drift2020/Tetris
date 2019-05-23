@@ -30,14 +30,14 @@ Figure_T1::Figure_T1(int x,int y) : Figure_Parent(x,y)
 
 	_blocks = new Block *[_size];
 
-	Block * temp = new  Block(x+0, y+0, '&', my_enums::Stop);
-	_blocks[0] = temp;
-	temp = new  Block(x+0, y+1, '&', my_enums::Stop);
-	_blocks[1] = temp;
-	temp = new  Block(x+0, y+2, '&', my_enums::Stop);
-	_blocks[2] = temp;
-	temp = new Block(x+1, y+2, '&', my_enums::Stop);
-	_blocks[3] = temp;
+
+	_blocks[0] = new  Block(0, 0, '&', my_enums::Stop);
+
+	_blocks[1] = new  Block(0, 1, '&', my_enums::Stop);
+	
+	_blocks[2] = new  Block(0, 2, '&', my_enums::Stop);
+	
+	_blocks[3] = new Block(1, 2, '&', my_enums::Stop);
 
 }
 
@@ -53,89 +53,89 @@ Figure_T1::Figure_T1(const int x, const int y, const int size, Block ** blocks) 
 }
 
 
-Figure_T1::Figure_T1(const Figure_T1 & obj):Figure_Parent(obj)
-{
-	
-
-}
-
-Figure_T1::Figure_T1(Figure_T1 && obj) :Figure_Parent(obj)
-{
-	
-}
-
-Figure_T1 & Figure_T1::operator=(Figure_T1 && obj)
-{
-	if (this != &obj)
-	{
-
-		this->_x = obj._x;
-		this->_y = obj._y;
-
-		this->_state = obj._state;
-		this->_size = obj._size;
-
-		for (int i = 0; i < this->_size; i++)
-		{
-			if (_blocks != nullptr && _blocks[i] != nullptr)
-				delete _blocks[i];
-		}
-		delete[]_blocks;
-
-		_blocks = new Block*[_size];
-
-		for (int i = 0; i < _size; i++)
-		{
-			*_blocks[i] = *obj._blocks[i];
-		}
-
-
-		obj._x = 0;
-		obj._y = 0;
-
-		obj._state = my_enums::None;
-
-		for (int i = 0; i < obj._size; i++)
-		{
-			if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
-				delete obj._blocks[i];
-		}
-		delete[]obj._blocks;
-
-		obj._size = 0;
-	}
-	return *this;
-}
-
-Figure_T1 & Figure_T1::operator=(const Figure_T1 & obj)
-{
-	if (this != &obj)
-	{
-
-		this->_x = obj._x;
-		this->_y = obj._y;
-
-		this->_state = obj._state;
-		this->_size = obj._size;
-
-		for (int i = 0; i < this->_size; i++)
-		{
-			if (_blocks != nullptr && _blocks[i] != nullptr)
-				delete _blocks[i];
-		}
-		delete[]_blocks;
-
-		_blocks = new Block*[_size];
-
-		for (int i = 0; i < _size; i++)
-		{
-			*_blocks[i] = *obj._blocks[i];
-		}
-
-
-	}
-	return *this;
-}
+//Figure_T1::Figure_T1(const Figure_T1 & obj):Figure_Parent(obj)
+//{
+//	
+//
+//}
+//
+//Figure_T1::Figure_T1(Figure_T1 && obj) :Figure_Parent(obj)
+//{
+//	
+//}
+//
+//Figure_T1 & Figure_T1::operator=(Figure_T1 && obj)
+//{
+//	if (this != &obj)
+//	{
+//
+//		this->_x = obj._x;
+//		this->_y = obj._y;
+//
+//		this->_state = obj._state;
+//		this->_size = obj._size;
+//
+//		for (int i = 0; i < this->_size; i++)
+//		{
+//			if (_blocks != nullptr && _blocks[i] != nullptr)
+//				delete _blocks[i];
+//		}
+//		delete[]_blocks;
+//
+//		_blocks = new Block*[_size];
+//
+//		for (int i = 0; i < _size; i++)
+//		{
+//			_blocks[i] = obj._blocks[i];
+//		}
+//
+//
+//		obj._x = 0;
+//		obj._y = 0;
+//
+//		obj._state = my_enums::None;
+//
+//		for (int i = 0; i < obj._size; i++)
+//		{
+//			if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
+//				delete obj._blocks[i];
+//		}
+//		delete[]obj._blocks;
+//
+//		obj._size = 0;
+//	}
+//	return *this;
+//}
+//
+//Figure_T1 & Figure_T1::operator=(const Figure_T1 & obj)
+//{
+//	if (this != &obj)
+//	{
+//
+//		this->_x = obj._x;
+//		this->_y = obj._y;
+//
+//		this->_state = obj._state;
+//		this->_size = obj._size;
+//
+//		for (int i = 0; i < this->_size; i++)
+//		{
+//			if (_blocks != nullptr && _blocks[i] != nullptr)
+//				delete _blocks[i];
+//		}
+//		delete[]_blocks;
+//
+//		_blocks = new Block*[_size];
+//
+//		for (int i = 0; i < _size; i++)
+//		{
+//			_blocks[i] = obj._blocks[i];
+//		}
+//
+//
+//	}
+//	return *this;
+//}
 
 void Figure_T1::Remove_block(int i)
 {

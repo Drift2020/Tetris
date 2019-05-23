@@ -66,7 +66,8 @@ Game::Game() : Parent(26, 25)
 
 	_parent = new Figure_Parent*[_count_figures];
 
-	_parent[0] = Create_figure();
+	_parent[0] = new Figure_Parent(Create_figure(7,1));
+
 	_scorre = 0;
 	_my_figure = _parent[0];
 	_old_my_figure = nullptr;
@@ -75,10 +76,11 @@ Game::Game() : Parent(26, 25)
 }
 
 #pragma region Create
-Figure_Parent * Game::Create_figure()
+//изменить рандом
+Figure_Parent & Game::Create_figure(int x, int y)
 {
 	int random_number = 0 + rand() % _size_creators;
-	return _creators[random_number]->FactoryMethod();
+	return *_creators[0]->FactoryMethod(x,y);
 }
 
 void Game::Add_figure(Figure_Parent * b)
@@ -87,9 +89,12 @@ void Game::Add_figure(Figure_Parent * b)
 	
 	for (int i = 0; i < _count_figures; i++)
 	{
-		temp[i] = _parent[i];
+
+		temp[i] = new Figure_Parent(*_parent[i]);
 	}
-	temp[_count_figures + 1] = b;
+	temp[_count_figures] = new Figure_Parent(*b);
+
+
 
 	for (int i = 0; i < _count_figures; i++)
 	{
@@ -103,7 +108,8 @@ void Game::Add_figure(Figure_Parent * b)
 
 	for (int i = 0; i < _count_figures; i++)
 	{
-		_parent[i] = temp[i];
+		
+		_parent[i] =new Figure_Parent(*temp[i]);
 	}
 	
 
@@ -114,14 +120,16 @@ void Game::Print_my_figure_in_field()
 	if(_old_my_figure!=nullptr)
 	for (int i = 0; i < _old_my_figure->Get_size(); i++)
 	{
-		_my_field->Set_symbol(COORD() = { static_cast<short>(_old_my_figure->Get_block(i)->Get_X()),static_cast<short>(_old_my_figure->Get_block(i)->Get_Y()) }, '.');
+		_my_field->Set_symbol(COORD() = { static_cast<short>(_old_my_figure->Get_block(i)->Get_X()+ _old_my_figure->Get_X()),
+			static_cast<short>(_old_my_figure->Get_block(i)->Get_Y() + _old_my_figure->Get_Y()) }, '.');
 	}
 
 	
 
 	for (int i = 0; i < _my_figure->Get_size(); i++)
 	{
-		_my_field->Set_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(i)->Get_X()), static_cast<short>(_my_figure->Get_block(i)->Get_Y()) }, _my_figure->Get_block(i)->Get_symbol());
+		_my_field->Set_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(i)->Get_X()+ _my_figure->Get_X()),
+			static_cast<short>(_my_figure->Get_block(i)->Get_Y() + _my_figure->Get_Y()) }, _my_figure->Get_block(i)->Get_symbol());
 	}
 //после должно быть падение фигуры
 }
@@ -146,6 +154,7 @@ void Game::Move_my_figure()
 		
 		if (elapsed_seconds.count() > speed)
 		{
+			delete _old_my_figure;
 			_old_my_figure = new Figure_Parent(*_my_figure);
 		
 			_my_figure->Move_on(0, 1);
@@ -159,14 +168,16 @@ void Game::Stop_block()
 {
 	for (int i = 0; i < _my_figure->Get_size(); i++)
 	{
-		if (this->_my_field->Get_cF_end().Y - 1 == _my_figure->Get_block(i)->Get_Y())
+		//плюс 1 так как локальные y начинается с нуля
+		if (this->_my_field->Get_cF_end().Y - 1 == (_my_figure->Get_block(i)->Get_Y()+ _my_figure->Get_Y())+1)
 		{
 			_my_figure->Set_state(my_enums::Stop);
 			for (int i = 0; i < _my_figure->Get_size(); i++)
 			{
 				_my_figure->Get_block(i)->Set_move(my_enums::Stop);
 			}
-
+			_my_figure = nullptr;
+			break;
 		}
 	}
 }
@@ -175,27 +186,22 @@ void Game::Stop_block()
 
 void Game::KeyPressed(int btnCode)//передвижение объекта
 {
-	//if (btnCode == 119) //w
-	//	mObj1Y--;
-	if (btnCode == 115) //s
+	if (btnCode == 224) 
 		speed = run;
-	else  //s
+	else  
 		speed = normal;
 
-	//if (btnCode == 97) //a
-	//	mObj1X--;
-	//else if (btnCode == 100) //d
-	//	mObj1X++;
+	if (btnCode == 32)
+	{
+		delete _old_my_figure;
+		_old_my_figure = new Figure_Parent(*_my_figure);
+		_my_figure->Rotate();
+		Print_my_figure_in_field();
 
-	//if (mObj1X < 0)
-	//	mObj1X = 0;
-	//else if (mObj1X >= X_SIZE)
-	//	mObj1X = X_SIZE - 1;
+	}
+	
 
-	//if (mObj1Y < 0)
-	//	mObj1Y = 0;
-	//else if (mObj1Y >=Y_SIZE)
-	//	mObj1Y = Y_SIZE - 1;
+	
 }
 
 void Game::UpdateF(float deltaTime)
@@ -210,7 +216,7 @@ void Game::UpdateF(float deltaTime)
 
 	if (_my_figure == nullptr)
 	{
-		Figure_Parent * temp = Create_figure();
+		Figure_Parent * temp = new Figure_Parent(Create_figure(7,1));
 		Add_figure(temp);
 		_my_figure = temp;
 	}
