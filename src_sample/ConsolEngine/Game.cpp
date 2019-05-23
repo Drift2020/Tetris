@@ -111,7 +111,7 @@ void Game::Add_figure(Figure_Parent * b)
 
 		_parent[i] = new Figure_Parent(*temp[i]);
 	}
-	b = _parent[_count_figures - 1];
+	_my_figure = _parent[_count_figures - 1];
 
 }
 
@@ -192,7 +192,7 @@ void Game::Stop_block()
 				int n3 = _parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() + 1;
 				int n4 = _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() + 1;
 				if (_parent[y]!=_my_figure &&
-					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y()+1 == _my_figure->Get_block(x2)->Get_Y()+ _my_figure->Get_Y()+1&&
+					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y()== _my_figure->Get_block(x2)->Get_Y()+ _my_figure->Get_Y()+1&&
 					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() + 1 == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X()+1)
 				{
 
@@ -262,7 +262,7 @@ void Game::UpdateF(float deltaTime)
 	{
 		Figure_Parent * temp = new Figure_Parent(Create_figure(7,1));
 		Add_figure(temp);
-		_my_figure = temp;
+	
 	}
 
 	
