@@ -6,13 +6,15 @@ namespace my_enums {
 	enum Rotate
 	{
 		Left,
-		Right
+		Right,
+		NONE
 	};
 
 	enum Move {
 		Down,
 		RunDown,
-		Stop
+		Stop,
+		None
 	};
 
 	enum Block {

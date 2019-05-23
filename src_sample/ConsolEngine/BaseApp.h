@@ -26,6 +26,9 @@ public:
 	//размеры области вывода по горизонтали и вертикали в символах
 	const int X_SIZE;
 	const int Y_SIZE;
+	float speed;
+	const float run=0.1f;
+	const float normal=0.5f;
 
 	//аргументами являются размеры области вывода по горизонтали и вертикали в символах
 	BaseApp(int xSize=100, int ySize=80);

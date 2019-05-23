@@ -19,6 +19,35 @@ Block::Block(int x, int y, char  symbol, my_enums::Move m)
 }
 
 
+Block & Block::operator=(const Block & obj)
+{
+	if (this != &obj)
+	{
+		this->_x = obj._x;
+		this->_y = obj._y;
+		this->_symbol = obj._symbol;
+		this->_move = obj._move;
+	}
+	return *this;
+}
+
+Block & Block::operator=(Block && obj)
+{
+	if (this != &obj)
+	{
+		this->_x = obj._x;
+		this->_y = obj._y;
+		this->_symbol = obj._symbol;
+		this->_move = obj._move;
+
+		obj._x = 0;
+		obj._y = 0;
+		obj._symbol = '\0';
+		obj._move = my_enums::None;
+	}
+	return *this;
+}
+
 Block::~Block()
 {
 	_x = 0;
@@ -68,6 +97,14 @@ void Block::Set_move(my_enums::Move m)
 {
 	_move = m;
 }
+void Block::Add_y(int y)
+{
+	_y += y;
+}
+void Block::Add_x(int x)
+{
+	_x += x;
+}
 #pragma endregion
 
 
@@ -83,16 +120,6 @@ void Block::Move_to(int x, int y)
 	_x = x;
 	_y = y;
 }
-
-
-//void Block::Rotate(my_enums::Rotate r)
-//{
-//	switch (switch_on)
-//	{
-//	default:
-//		break;
-//	}
-//}
 
 #pragma endregion
 

@@ -57,6 +57,9 @@ BaseApp::BaseApp(int xSize, int ySize) : X_SIZE(xSize), Y_SIZE(ySize)
 			SetChar(x, y, L' ');
 		}
 	}
+
+	//скорость
+	speed = normal;
 }
 
 BaseApp::~BaseApp()

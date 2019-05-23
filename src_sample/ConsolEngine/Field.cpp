@@ -128,14 +128,14 @@ void Field::Set_symbol(const COORD i, const char s)
 {
 	_field[i.Y][i.X] = s;
 }
-void Field::Set_scorre(const int i)
+void Field::Set_scorre(const int i,const int y)
 {
 	char temp[100];
 	sprintf(temp, "> Scorre: %d\0", i);
 	int size = strlen(temp);
-	for (int i = 3,i1=0; i < size; i++,i1++)
+	for (int i = 3,i1=0; i1 < size; i++,i1++)
 	{
-		_scorre[3][i] = temp[i1];
+		_scorre[y][i] = temp[i1];
 	}
 
 	

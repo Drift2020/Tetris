@@ -1,7 +1,8 @@
 // Copyright 2009-2014 Blam Games, Inc. All Rights Reserved.
 
 #pragma once
-
+#include <chrono>
+#include <ctime> 
 #include "BaseApp.h"
 #include "Field.h"
 #include "Creator.h"
@@ -23,6 +24,10 @@ class Game : public BaseApp
 
 		Figure_Parent * _my_figure;
 		Figure_Parent * _old_my_figure;
+
+		std::chrono::system_clock::time_point start_time_figure;
+		std::chrono::system_clock::time_point end_time_figure;
+		bool time_my_figure;
 #pragma region print
 
 		void Print_field();
@@ -42,9 +47,11 @@ class Game : public BaseApp
 
 
 
-#pragma region Set
+#pragma region Move
 
+		void Move_my_figure();
 
+		void Stop_block();
 
 #pragma endregion
 

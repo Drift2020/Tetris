@@ -34,6 +34,7 @@ void Game::Print_scorre()
 		}
 	}
 
+	
 }
 
 void Game::Print_preview()
@@ -66,9 +67,11 @@ Game::Game() : Parent(26, 25)
 	_parent = new Figure_Parent*[_count_figures];
 
 	_parent[0] = Create_figure();
-
+	_scorre = 0;
 	_my_figure = _parent[0];
 	_old_my_figure = nullptr;
+	
+	time_my_figure = false;
 }
 
 #pragma region Create
@@ -111,10 +114,10 @@ void Game::Print_my_figure_in_field()
 	if(_old_my_figure!=nullptr)
 	for (int i = 0; i < _old_my_figure->Get_size(); i++)
 	{
-		_my_field->Set_symbol(COORD() = { static_cast<short>(_old_my_figure->Get_block(i)->Get_X()),static_cast<short>(_old_my_figure->Get_block(i)->Get_Y()) }, '+');
+		_my_field->Set_symbol(COORD() = { static_cast<short>(_old_my_figure->Get_block(i)->Get_X()),static_cast<short>(_old_my_figure->Get_block(i)->Get_Y()) }, '.');
 	}
 
-	_old_my_figure = _my_figure;
+	
 
 	for (int i = 0; i < _my_figure->Get_size(); i++)
 	{
@@ -125,14 +128,61 @@ void Game::Print_my_figure_in_field()
 
 #pragma endregion
 
+#pragma region move
+void Game::Move_my_figure()
+{
+	if (_my_figure != nullptr)
+	{
+	
+		if (!time_my_figure)
+		{
+			start_time_figure = std::chrono::system_clock::now();
+			time_my_figure = true;
+		}
+
+		end_time_figure = std::chrono::system_clock::now();
+
+		std::chrono::duration<float> elapsed_seconds = end_time_figure - start_time_figure;
+		
+		if (elapsed_seconds.count() > speed)
+		{
+			_old_my_figure = new Figure_Parent(*_my_figure);
+		
+			_my_figure->Move_on(0, 1);
+
+			Print_my_figure_in_field();
+			time_my_figure = false;
+		}
+	}
+}
+void Game::Stop_block()
+{
+	for (int i = 0; i < _my_figure->Get_size(); i++)
+	{
+		if (this->_my_field->Get_cF_end().Y - 1 == _my_figure->Get_block(i)->Get_Y())
+		{
+			_my_figure->Set_state(my_enums::Stop);
+			for (int i = 0; i < _my_figure->Get_size(); i++)
+			{
+				_my_figure->Get_block(i)->Set_move(my_enums::Stop);
+			}
+
+		}
+	}
+}
+#pragma endregion
+
 
 void Game::KeyPressed(int btnCode)//передвижение объекта
 {
 	//if (btnCode == 119) //w
 	//	mObj1Y--;
-	//else if (btnCode == 115) //s
-	//	mObj1Y++;
-	//else if (btnCode == 97) //a
+	if (btnCode == 115) //s
+		speed = run;
+	else  //s
+		speed = normal;
+
+	//if (btnCode == 97) //a
 	//	mObj1X--;
 	//else if (btnCode == 100) //d
 	//	mObj1X++;
@@ -156,6 +206,7 @@ void Game::UpdateF(float deltaTime)
 	Print_preview();
 
 	Print_scorre();
+	_my_field->Set_scorre(_scorre,2);
 
 	if (_my_figure == nullptr)
 	{
@@ -164,8 +215,11 @@ void Game::UpdateF(float deltaTime)
 		_my_figure = temp;
 	}
 
-	Print_my_figure_in_field();
+	Stop_block();
 
+	Move_my_figure();
+
+	speed = normal;
 	//SetChar(mObj1XOld, mObj1YOld, L' ');
 	//SetChar(mObj1X, mObj1Y, L'O');
 

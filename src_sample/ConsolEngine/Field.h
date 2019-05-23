@@ -33,7 +33,7 @@ public:
 	
 
 	void Set_symbol(const COORD i, const char s);
-	void Set_scorre(const int i);
+	void Set_scorre(const int i, const int y);
 	void Set_preview(my_enums::Block b);
 	//F
 	void Set_cF_start(const COORD i);

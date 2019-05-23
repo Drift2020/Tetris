@@ -22,8 +22,12 @@ public:
 	 void  Set_size(int s) override;
 
 
-	 void  Move_on(int x, int y) override;
-	 void  Move_to(int x, int y) override;
-	 void  Rotate(my_enums::Rotate r) override;
+	 Figure_T1(const Figure_T1& obj);// Конструктор копирования------------------
+
+	 Figure_T1(Figure_T1 && obj);//кoнструктор переноса-----------------------------------
+
+	 Figure_T1  &operator =(Figure_T1  && obj) ;//Присв с переносом --------------------------
+
+	 Figure_T1  &operator =(const Figure_T1  & obj);//Присв с копированием --------------------------
 };
 

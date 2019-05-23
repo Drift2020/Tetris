@@ -9,7 +9,7 @@ Figure_Parent::Figure_Parent()
 	 _x=0;
 	 _y=0;
 	 _size = 0;
-	
+	 _blocks = nullptr;
 
 	
 }
@@ -21,8 +21,148 @@ Figure_Parent::Figure_Parent(int x,int y)
 	_y = y;
 	_size = 0;
 	_state = my_enums::Down;
+	_blocks = nullptr;
+
+}
+
+Figure_Parent::Figure_Parent(const Figure_Parent & obj)
+{
+	this->_x = obj._x;
+	this->_y = obj._y;
+
+	this->_state = obj._state;
+	this->_size = obj._size;
+
+	/*for (int i = 0; i < this->_size; i++)
+	{
+		if (_blocks != nullptr && _blocks[i] != nullptr)
+			delete _blocks[i];
+	}
+	delete[]_blocks;*/
+
+	_blocks = new Block*[_size];
+
+	for (int i = 0; i < _size; i++)
+	{
+		_blocks[i] = new Block();
+		*_blocks[i] = *obj._blocks[i];
+	}
+
+	
+}
+
+Figure_Parent::Figure_Parent(Figure_Parent && obj)
+{
+	this->_x = obj._x;
+	this->_y = obj._y;
+
+	this->_state = obj._state;
+	this->_size = obj._size;
+
+	for (int i = 0; i < this->_size; i++)
+	{
+		if (_blocks != nullptr && _blocks[i] != nullptr)
+			delete _blocks[i];
+	}
+	delete[]_blocks;
+
+	_blocks = new Block*[_size];
+
+	for (int i = 0; i < _size; i++)
+	{
+		_blocks[i] = new Block();
+		*_blocks[i] = *obj._blocks[i];
+	}
 
 
+	obj._x=0;
+	obj._y=0;
+
+	obj._state= my_enums::None;
+
+	for (int i = 0; i < obj._size; i++)
+	{
+		if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
+			delete obj._blocks[i];
+	}
+	delete[]obj._blocks;
+
+	obj._size=0;
+}
+
+Figure_Parent & Figure_Parent::operator=(Figure_Parent && obj)
+{
+	if (this != &obj)
+	{
+
+		this->_x = obj._x;
+		this->_y = obj._y;
+
+		this->_state = obj._state;
+		this->_size = obj._size;
+
+		for (int i = 0; i < this->_size; i++)
+		{
+			if (_blocks != nullptr && _blocks[i] != nullptr)
+				delete _blocks[i];
+		}
+		delete[]_blocks;
+
+		_blocks = new Block*[_size];
+
+		for (int i = 0; i < _size; i++)
+		{
+			_blocks[i] = new Block();
+			*_blocks[i] = *obj._blocks[i];
+		}
+
+
+		obj._x = 0;
+		obj._y = 0;
+
+		obj._state = my_enums::None;
+
+		for (int i = 0; i < obj._size; i++)
+		{
+			if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
+				delete obj._blocks[i];
+		}
+		delete[]obj._blocks;
+
+		obj._size = 0;
+	}
+	return *this;
+}
+
+Figure_Parent & Figure_Parent::operator=(const Figure_Parent & obj)
+{
+	if (this != &obj)
+	{
+
+		this->_x = obj._x;
+		this->_y = obj._y;
+
+		this->_state = obj._state;
+		this->_size = obj._size;
+
+		for (int i = 0; i < this->_size; i++)
+		{
+			if (_blocks != nullptr && _blocks[i] != nullptr)
+				delete _blocks[i];
+		}
+		delete[]_blocks;
+
+		_blocks = new Block*[_size];
+
+		for (int i = 0; i < _size; i++)
+		{
+			_blocks[i] = new Block();
+			*_blocks[i] = *obj._blocks[i];
+		}
+
+
+	}
+	return *this;
 }
 
 Figure_Parent::Figure_Parent(const int x, const int y, const int size, Block ** blocks)
@@ -31,19 +171,6 @@ Figure_Parent::Figure_Parent(const int x, const int y, const int size, Block ** 
 	 _y = y;
 	 _blocks = blocks;
 }
-
-
-//Figure_Parent::Figure_Parent(const Figure_Parent& obj) // конструктор копирования
-//{
-//	
-//
-//
-//	
-//}
-//Figure_Parent& Figure_Parent::operator=(const Figure_Parent& obj) // оператор присваивания
-//{
-//	
-//}
 
 Figure_Parent::~Figure_Parent()
 {
@@ -132,7 +259,14 @@ void Figure_Parent::Set_state(my_enums::Move _state)
 #pragma region  move
 void Figure_Parent::Move_on(int x, int y)
 {
+	for (int i = 0; i < _size; i++)
+	{
+		_blocks[i]->Add_y(1);
 
+	}
+
+	_x += x;
+	_y += y;
 }
 void Figure_Parent::Move_to(int x, int y)
 {
