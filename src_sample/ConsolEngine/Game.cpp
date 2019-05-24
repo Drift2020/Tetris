@@ -211,10 +211,25 @@ void Game::Stop_block()
 
 void Game::move_my_figure_mine(int x,int y)
 {
+	
 	delete _old_my_figure;
 	_old_my_figure = new Figure_Parent(*_my_figure);
 	_my_figure->Move_on(x, y);
 	Print_my_figure_in_field();
+}
+bool Game::is_move(int x, int y)
+{
+	for (int x1 = 0; x1 < _my_figure->Get_size(); x1++)
+	{
+		if (_my_field->Get_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(x1)->Get_X()+ x+ _my_figure->Get_X()),
+											  static_cast<short>(_my_figure->Get_block(x1)->Get_Y() + y + _my_figure->Get_Y()) }) == '#'||
+			_my_field->Get_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(x1)->Get_X() -1- x + _my_figure->Get_X()),
+											  static_cast<short>(_my_figure->Get_block(x1)->Get_Y() + y + _my_figure->Get_Y()) }) == '#')
+		{
+			return false;
+		}
+	}
+	return true;
 }
 #pragma endregion
 
@@ -236,12 +251,14 @@ void Game::KeyPressed(int btnCode)//передвижение объекта
 	}
 	else if (btnCode == 77)
 	{
-		move_my_figure_mine(1, 0);
+		if(is_move(1, 0))
+			move_my_figure_mine(1, 0);
 		
 	}
 	else if (btnCode == 75)
 	{
-		move_my_figure_mine(-1, 0);
+		if (is_move(-1, 0))
+			move_my_figure_mine(-1, 0);
 	}
 
 	
