@@ -159,7 +159,7 @@ Figure_Parent::~Figure_Parent()
 
 void Figure_Parent::Remove_block(int i)
 {
-	if (i > 0 && _size > 0)
+	if (i >= 0 && _size > 0)
 	{
 
 		Block** temp = new Block*[_size - 1];

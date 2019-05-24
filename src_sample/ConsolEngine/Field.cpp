@@ -7,7 +7,7 @@ Field::Field()
 {
 	_field = nullptr;
 	cF_start = COORD() = {0,0};
-	cF_end = COORD() = { 19,22 };
+	cF_end = COORD() = { 17,22 };
 	Reset_symbol();
 	
 
