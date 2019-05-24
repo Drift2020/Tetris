@@ -4,24 +4,47 @@ class Figure_T1 :
 	public Figure_Parent
 {
 public:
-
+#pragma region system
 	Figure_T1(int x, int y);
-	Figure_T1();
-	 ~Figure_T1() override;
+	Figure_T1()
+;
+	Figure_T1(const Figure_T1& obj);// Конструктор копирования------------------
+	Figure_T1(Figure_T1 && obj);//кoнструктор переноса-----------------------------------
+	Figure_T1  &operator =(Figure_T1  && obj);//Присв с переносом --------------------------
+	Figure_T1  &operator =(const Figure_T1  & obj);//Присв с копированием --------------------------
+	 ~Figure_T1();
+#pragma endregion
 
+#pragma region block
 	 void  Remove_block(int i) override;
+	 void  Add_block(Block * block) override;
+#pragma endregion
 
-	 Block  * Get_block (int i) override;
+#pragma region get
+	 Block *Get_block (int i) override;
 	 int  Get_X() override;
 	 int  Get_Y() override;
 	 int  Get_size() override;
+	 my_enums::Move  Get_state() override;
 	 my_enums::Block  Get_state_block() override;
+	 my_enums::Rotate Get_state_rotate() override;
+#pragma endregion
 
-	 void  Add_block( Block * block) override;
+
+#pragma region set
 	 void  Set_X(int x) override;
 	 void  Set_Y(int y) override;
 	 void  Set_size(int s) override;
-	 void  Rotate() override;
+	 void  Set_state(my_enums::Move _state)override;
+	 void Set_state_block(my_enums::Block _state) override;
+	 void  Set_state_rotate(my_enums::Rotate _state) override;
+#pragma endregion
 
+
+#pragma region figure
+	 void  Rotate() override;
+	 void Move_to(int x, int y)override;
+	 void Move_on(int x, int y)override;
+#pragma endregion
 };
 

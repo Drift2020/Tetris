@@ -22,6 +22,7 @@ void Game::Print_field()
 	{
 		for (int x = 0; x < this->_parent[y1]->Get_size(); x++)
 		{
+	
 			if(_parent[y1] != _my_figure)
 			SetChar(_parent[y1]->Get_block(x)->Get_X()+ _parent[y1]->Get_X(),
 				_parent[y1]->Get_block(x)->Get_Y() + _parent[y1]->Get_Y(),
@@ -78,7 +79,7 @@ Game::Game() : Parent(26, 25)
 
 	_parent = new Figure_Parent*[_count_figures];
 
-	_parent[0] = new Figure_Parent(Create_figure(7,1));
+	_parent[0] = Create_figure(7,1);
 
 	_scorre = 0;
 	_my_figure = _parent[0];
@@ -89,13 +90,13 @@ Game::Game() : Parent(26, 25)
 
 #pragma region Create and end
 //изменить рандом
-Figure_Parent & Game::Create_figure(int x, int y)
+Figure_Parent * Game::Create_figure(int x, int y)
 {
 	int random_number = 0 + rand() % _size_creators;
 
 
 
-	return *_creators[0]->FactoryMethod(x,y);
+	return _creators[0]->FactoryMethod(x,y);
 }
 
 bool Game::is_create(int x, int y)
@@ -112,9 +113,9 @@ void Game::Add_figure(Figure_Parent * b)
 	for (int i = 0; i < _count_figures; i++)
 	{
 
-		temp[i] = new Figure_Parent(*_parent[i]);
+		temp[i] = _parent[i];
 	}
-	temp[_count_figures] = new Figure_Parent(*b);
+	temp[_count_figures] =  b;
 
 
 
@@ -131,7 +132,7 @@ void Game::Add_figure(Figure_Parent * b)
 	for (int i = 0; i < _count_figures; i++)
 	{
 
-		_parent[i] = new Figure_Parent(*temp[i]);
+		_parent[i] =  temp[i];
 	}
 	_my_figure = _parent[_count_figures - 1];
 
@@ -209,8 +210,10 @@ void Game::Move_my_figure()
 
 		if (elapsed_seconds.count() > speed)
 		{
+			if(_old_my_figure!=nullptr)
 			delete _old_my_figure;
-			_old_my_figure = new Figure_Parent(*_my_figure);
+			
+			*_old_my_figure =*_my_figure;
 
 			_my_figure->Move_on(0, 1);
 			Print_field();
@@ -310,7 +313,7 @@ void Game::move_my_figure_mine(int x,int y)
 {
 	
 	delete _old_my_figure;
-	_old_my_figure = new Figure_Parent(*_my_figure);
+	_old_my_figure = _my_figure;
 	_my_figure->Move_on(x, y);
 	Print_my_figure_in_field();
 }
@@ -474,7 +477,7 @@ void Game::KeyPressed(int btnCode)//передвижение объекта
 	if (btnCode == 32)
 	{
 		delete _old_my_figure;
-		_old_my_figure = new Figure_Parent(*_my_figure);
+		_old_my_figure = _my_figure;
 		_my_figure->Rotate();
 		Print_my_figure_in_field();
 
@@ -510,7 +513,7 @@ void Game::UpdateF(float deltaTime)
 		Check_lines();
 		if (is_create(7, 1))
 		{			
-			Figure_Parent * temp = new Figure_Parent(Create_figure(7, 1));
+			Figure_Parent * temp =  Create_figure(7, 1);
 			Add_figure(temp);
 		}
 		End_game();

@@ -11,7 +11,7 @@ Figure_Parent::Figure_Parent()
 	 this->_size = 0;
 	 this->_blocks = nullptr;
 	 this->_state = my_enums::Down;
-	  this->_state_rotate = my_enums::DOWN;
+	 this->_state_rotate = my_enums::DOWN;
 	
 }
 
@@ -93,14 +93,14 @@ Figure_Parent & Figure_Parent::operator=(Figure_Parent && obj)
 
 		for (int i = 0; i < _size; i++)
 		{
-			
+
 			_blocks[i] = new Block(*obj._blocks[i]);
 		}
 
 		obj._state_rotate = my_enums::NONE;
 		obj._x = 0;
 		obj._y = 0;
-		obj._state_block= my_enums::NoneT;
+		obj._state_block = my_enums::NoneT;
 		obj._state = my_enums::None;
 
 		for (int i = 0; i < obj._size; i++)
@@ -117,6 +117,8 @@ Figure_Parent & Figure_Parent::operator=(Figure_Parent && obj)
 
 Figure_Parent & Figure_Parent::operator=(const Figure_Parent & obj)
 {
+
+
 	if (this != &obj)
 	{
 
@@ -151,7 +153,7 @@ Figure_Parent::~Figure_Parent()
 	}
 	delete[]  _blocks;
 }
-
+ 
 void Figure_Parent::Remove_block(int i)
 {
 	if (i >= 0 && _size > 0)
@@ -190,81 +192,81 @@ void Figure_Parent::Remove_block(int i)
 #pragma endregion
 
 
-#pragma region get
-Block *Figure_Parent::Get_block(int i)
-{
-	return _blocks[i];
-}
-int Figure_Parent::Get_X()
-{
-	return _x;
-}
-int Figure_Parent::Get_Y()
-{
-	return _y;
-}
-
-int   Figure_Parent::Get_size() {
-	return _size;
-}
-my_enums::Move Figure_Parent::Get_state()
-{
-	return this->_state;
-}
-
-my_enums::Block Figure_Parent::Get_state_block()
-{
-	return _state_block;
-}
-
-
-#pragma endregion
-
-
-#pragma region set
-void Figure_Parent::Add_block(Block * block)
-{
-
-}
-void Figure_Parent::Set_X(int x)
-{
-
-}
-void Figure_Parent::Set_Y(int y)
-{
-
-}
-
-void  Figure_Parent::Set_size(int s)
-{
-
-}
-void Figure_Parent::Set_state(my_enums::Move _state)
-{
-	this->_state = _state;
-}
-#pragma endregion
-
-
-#pragma region  move
-void Figure_Parent::Move_on(int x, int y)
-{
-	
-
-	_x += x;
-	_y += y;
-}
-void Figure_Parent::Move_to(int x, int y)
-{
-
-}
-void Figure_Parent::Rotate()
-{
-	
-	
-	
-}
-#pragma endregion
+//#pragma region get
+//Block Figure_Parent::Get_block(int i)
+//{
+//	return *_blocks[i];
+//}
+//int Figure_Parent::Get_X()
+//{
+//	return _x;
+//}
+//int Figure_Parent::Get_Y()
+//{
+//	return _y;
+//}
+//
+//int   Figure_Parent::Get_size() {
+//	return _size;
+//}
+//my_enums::Move Figure_Parent::Get_state()
+//{
+//	return this->_state;
+//}
+//
+//my_enums::Block Figure_Parent::Get_state_block()
+//{
+//	return _state_block;
+//}
+//
+//
+//#pragma endregion
+//
+//
+//#pragma region set
+//void Figure_Parent::Add_block(Block * block)
+//{
+//
+//}
+//void Figure_Parent::Set_X(int x)
+//{
+//
+//}
+//void Figure_Parent::Set_Y(int y)
+//{
+//
+//}
+//
+//void  Figure_Parent::Set_size(int s)
+//{
+//
+//}
+//void Figure_Parent::Set_state(my_enums::Move _state)
+//{
+//	this->_state = _state;
+//}
+//#pragma endregion
+//
+//
+//#pragma region  move
+//void Figure_Parent::Move_on(int x, int y)
+//{
+//	
+//
+//	_x += x;
+//	_y += y;
+//}
+//void Figure_Parent::Move_to(int x, int y)
+//{
+//
+//}
+//void Figure_Parent::Rotate()
+//{
+//	
+//	
+//	
+//}
+//#pragma endregion
 
 
 

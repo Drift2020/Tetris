@@ -1,8 +1,10 @@
 ﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  Game.cpp
-  Generating Code...
-  Compiling...
   main.cpp
+  Game.cpp
+  Figure_T1.cpp
+  Figure_Parent.cpp
+  Creator_T1.cpp
+  Creator.cpp
   BaseApp.cpp
 d:\documents\github\tetris\src_sample\consolengine\performancecounter.h(35): warning C4244: 'return': conversion from 'LONGLONG' to 'int', possible loss of data
 d:\documents\github\tetris\src_sample\consolengine\performancecounter.h(42): warning C4244: 'return': conversion from 'LONGLONG' to 'int', possible loss of data
@@ -13,4 +15,7 @@ d:\documents\github\tetris\src_sample\consolengine\baseapp.cpp(106): warning C49
 d:\documents\github\tetris\src_sample\consolengine\baseapp.cpp(108): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\conio.h(453): note: see declaration of 'getch'
   Generating Code...
+  Skipping... (no relevant changes detected)
+  Figure_T2.cpp
+BaseApp.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   ConsolEngine.vcxproj -> D:\Documents\GitHub\Tetris\src_sample\Debug\ConsolEngine.exe

@@ -3,7 +3,7 @@
 class Creator
 {
 public:
-	Figure_Parent virtual *FactoryMethod(int x, int y);
+	Figure_Parent virtual FactoryMethod(int x, int y);
 	Creator();
 	/*Creator(const Creator& obj); 
 	Creator& operator=(const Creator& obj); */

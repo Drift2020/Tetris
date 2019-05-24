@@ -13,15 +13,128 @@ Figure_T1::Figure_T1() : Figure_Parent()
 	this->_state_block = my_enums::T1;
 	_blocks = new Block*[_size];
 	
-		Block * temp = new  Block(0,0,'&',my_enums::Down);
-		_blocks[0] = temp;
-		 temp = new  Block(0,1,'&',my_enums::Down);
-		 _blocks[1] = temp;
-		temp = new  Block(0, 2, '&', my_enums::Down);
-		_blocks[2] = temp;
-		 temp = new Block(1, 2, '&', my_enums::Down);
-		 _blocks[3] = temp;
+		
+		_blocks[0] =  new  Block(0, 0, '&', my_enums::Down);;
+		
+		 _blocks[1] = new  Block(0, 1, '&', my_enums::Down);
+		
+		_blocks[2] = new  Block(0, 2, '&', my_enums::Down);
+		
+		 _blocks[3] = new Block(1, 2, '&', my_enums::Down);
 		 _state = my_enums::Down;
+}
+
+Figure_T1::Figure_T1(const Figure_T1 & obj):Figure_Parent(obj)
+{
+	/*this->_x = obj._x;
+	this->_y = obj._y;
+	this->_state_block = obj._state_block;
+	this->_state = obj._state;
+	this->_size = obj._size;
+	this->_state_rotate = obj._state_rotate;
+	_blocks = new Block*[_size];
+
+	for (int i = 0; i < _size; i++)
+	{
+
+		_blocks[i] = new Block(*obj._blocks[i]);
+	}*/
+}
+
+Figure_T1::Figure_T1(Figure_T1 && obj)
+{
+	this->_x = obj._x;
+	this->_y = obj._y;
+	this->_state_block = obj._state_block;
+	this->_state = obj._state;
+	this->_size = obj._size;
+	this->_state_rotate = obj._state_rotate;
+	_blocks = new Block*[_size];
+
+	for (int i = 0; i < _size; i++)
+	{
+
+		_blocks[i] = new Block(*obj._blocks[i]);
+	}
+
+
+	obj._x = 0;
+	obj._y = 0;
+	obj._state_rotate = my_enums::NONE;
+	obj._state = my_enums::None;
+	obj._state_block = my_enums::NoneT;
+	for (int i = 0; i < obj._size; i++)
+	{
+		if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
+			delete obj._blocks[i];
+	}
+	delete[]obj._blocks;
+
+	obj._size = 0;
+}
+
+Figure_T1 & Figure_T1::operator=(Figure_T1 && obj)
+{
+	if (this != &obj)
+	{
+
+		this->_x = obj._x;
+		this->_y = obj._y;
+		this->_state_block = obj._state_block;
+		this->_state = obj._state;
+		this->_size = obj._size;
+		this->_state_rotate = obj._state_rotate;
+
+		_blocks = new Block*[_size];
+
+		for (int i = 0; i < _size; i++)
+		{
+
+			_blocks[i] = obj._blocks[i];
+		}
+
+		obj._state_rotate = my_enums::NONE;
+		obj._x = 0;
+		obj._y = 0;
+		obj._state_block = my_enums::NoneT;
+		obj._state = my_enums::None;
+
+		for (int i = 0; i < obj._size; i++)
+		{
+			if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
+				delete obj._blocks[i];
+		}
+		delete[]obj._blocks;
+
+		obj._size = 0;
+	}
+	return *this;
+}
+
+Figure_T1 & Figure_T1::operator=(const Figure_T1 & obj)
+{
+	if (this != &obj)
+	{
+		Figure_Parent::operator= (obj);
+	/*	this->_x = obj._x;
+		this->_y = obj._y;
+		this->_state_block = obj._state_block;
+		this->_state = obj._state;
+		this->_size = obj._size;
+		this->_state_rotate = obj._state_rotate;
+
+
+		_blocks = new Block*[_size];
+
+		for (int i = 0; i < _size; i++)
+		{
+
+			_blocks[i] = new Block(*obj._blocks[i]);
+		}
+*/
+
+	}
+	return *this;
 }
 
 Figure_T1::Figure_T1(int x,int y) : Figure_Parent(x,y)
@@ -49,33 +162,54 @@ Figure_T1::~Figure_T1()
 
 
 
-void Figure_T1::Remove_block(int i)
-{
-	if (i > 0 && _size > 0)
-	{
-		
-		Block** temp = new Block*[_size - 1];
 
-		for (int i = 0; i < _size-1; i++)
-		{
-			temp[i] = _blocks[i];
-		}
-
-
-		for (int i = 0; i < _size ; i++)
-		{
-			delete _blocks[i];
-		}
-		_size--;
-
-		_blocks = temp;
-
-	}
-}
 
 
 #pragma endregion
 
+#pragma region Block
+
+void Figure_T1::Remove_block(int i)
+{
+	if (i >= 0 && _size > 0)
+	{
+
+		Block** temp = new Block*[_size - 1];
+
+		for (int i1 = 0, i2 = 0; i1 < _size; i1++)
+		{
+			if (i1 != i)
+			{
+				temp[i2] = new Block(*_blocks[i1]);
+				i2++;
+			}
+
+		}
+
+
+		for (int i = 0; i < _size; i++)
+		{
+			delete _blocks[i];
+		}
+		delete[]_blocks;
+		_size--;
+
+		_blocks = new Block*[_size];
+
+		for (int i = 0; i < _size; i++)
+		{
+			_blocks[i] = new Block(*temp[i]);
+		}
+
+
+	}
+}
+
+void Figure_T1::Add_block(Block * block)
+{
+
+}
+#pragma endregion
 
 
 #pragma region get
@@ -99,30 +233,48 @@ my_enums::Block Figure_T1::Get_state_block()
 {
 	return _state_block;
 }
+my_enums::Rotate Figure_T1::Get_state_rotate()
+{
+	return this->_state_rotate;
+}
+my_enums::Move Figure_T1::Get_state()
+{
+	return _state;
+}
 #pragma endregion
 
 
 #pragma region set
-void Figure_T1::Add_block(Block * block)
-{
 
-}
 void Figure_T1::Set_X(int x)
 {
-
+	this->_x = x;
 }
 void Figure_T1::Set_Y(int y)
 {
-
+	this->_y = y;
 }
 
 void  Figure_T1::Set_size(int s)
 {
-
+	this->_size = s;
+}
+void Figure_T1::Set_state(my_enums::Move _state)
+{
+	this->_state = _state;
+}
+void Figure_T1::Set_state_block(my_enums::Block _state)
+{
+	this->_state_block = _state;
+}
+void Figure_T1::Set_state_rotate(my_enums::Rotate _state)
+{
+	this->_state_rotate = _state;
 }
 #pragma endregion
 
 
+#pragma region figure
 void Figure_T1::Rotate()
 {
 
@@ -209,3 +361,15 @@ void Figure_T1::Rotate()
 	}
 
 }
+
+
+void Figure_T1::Move_on(int x, int y)
+{
+	_x += x;
+	_y += y;
+}
+void Figure_T1::Move_to(int x, int y)
+{
+
+}
+#pragma endregion

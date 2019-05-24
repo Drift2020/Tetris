@@ -20,52 +20,53 @@ protected:
 public:
 #pragma region system
 	Figure_Parent();
-
 	Figure_Parent(int x, int y);
-
 	Figure_Parent(const Figure_Parent& obj);// Конструктор копирования------------------
-
 	Figure_Parent(Figure_Parent && obj);//кoнструктор переноса-----------------------------------
 
-	Figure_Parent  &operator =(Figure_Parent  && obj);//Присв с переносом --------------------------
 
-	Figure_Parent  &operator =(const Figure_Parent  & obj);//Присв с копированием --------------------------
-
-	virtual ~Figure_Parent();
+	 Figure_Parent  &operator =(Figure_Parent  && obj);//Присв с переносом --------------------------
+	 Figure_Parent  &operator =(const Figure_Parent  & obj);//Присв с копированием --------------------------
+	 ~Figure_Parent();
 
 #pragma endregion
 
 	
 #pragma region block
 
-	void virtual Remove_block(int i);
-	void virtual Add_block(Block * block);
+	virtual	void  Remove_block(int i)=0;
+	
+	virtual void  Add_block(Block * block)=0;
 #pragma endregion
 
 
 #pragma region get
-	Block virtual *Get_block(int i);
-	int virtual Get_X();
-	int virtual Get_Y();
-	int virtual Get_size();
-	my_enums::Move virtual Get_state();
-	my_enums::Block virtual Get_state_block();
+	virtual Block *Get_block(int i)=0;
+	virtual int  Get_X()=0;
+	virtual int  Get_Y()=0;
+	virtual int  Get_size()=0;
+	virtual my_enums::Move  Get_state()=0;
+	virtual my_enums::Block  Get_state_block()=0;
+	virtual my_enums::Rotate Get_state_rotate() = 0;
 #pragma endregion
 
 	
 #pragma region set
 
-	void virtual Set_X(int x);
-	void virtual Set_Y(int y);
-	void virtual Set_size(int s);
-	void virtual Set_state(my_enums::Move _state);
+	virtual	void  Set_X(int x)=0;
+	virtual void  Set_Y(int y) = 0;
+	virtual void  Set_size(int s) = 0;
+	virtual void  Set_state(my_enums::Move _state) = 0;
+	virtual void  Set_state_block(my_enums::Block _state) = 0;
+	virtual void  Set_state_rotate(my_enums::Rotate _state) = 0;
+
 #pragma endregion
 
 
 #pragma region figure
-	void  Move_on(int x, int y);
-	void  Move_to(int x, int y);
-	void  virtual Rotate();
+	virtual void  Move_on(int x, int y) = 0;
+	virtual void  Move_to(int x, int y) = 0;
+	virtual void   Rotate() = 0;
 #pragma endregion
 
 	

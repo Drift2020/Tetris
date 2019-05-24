@@ -37,15 +37,15 @@ protected:
 #pragma endregion
 
 #pragma region Create
-		Figure_Parent &Create_figure(int x, int y);
+		Figure_Parent *Create_figure(int x, int y);
 		bool is_create(int x, int y);
 		void Add_figure(Figure_Parent * b);
 
+		void End_game();
 		void Print_my_figure_in_field();
 #pragma endregion
 
 	
-		void End_game();
 
 
 #pragma region Move
