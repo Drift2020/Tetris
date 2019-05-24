@@ -164,7 +164,7 @@ void Game::Move_my_figure()
 		}
 	}
 }
-void Game::Stop_block(Figure_Parent *& _my_figure)
+void Game::Stop_block()
 {
 	if (_my_figure == nullptr)
 		return;
@@ -208,7 +208,49 @@ void Game::Stop_block(Figure_Parent *& _my_figure)
 		}
 	}
 }
+void Game::Stop_block(Figure_Parent *& _my_figure)
+{
+	
 
+	for (int i = 0; i < _my_figure->Get_size(); i++)
+	{
+		//плюс 1 так как локальные y начинается с нуля
+		if (this->_my_field->Get_cF_end().Y - 1 == (_my_figure->Get_block(i)->Get_Y() + _my_figure->Get_Y()) + 1)
+		{
+			_my_figure->Set_state(my_enums::Stop);
+			for (int i = 0; i < _my_figure->Get_size(); i++)
+			{
+				_my_figure->Get_block(i)->Set_move(my_enums::Stop);
+			}
+			
+			return;
+		}
+	}
+
+	for (int y = 0; y < this->_count_figures; y++)
+	{
+		for (int x = 0; x < this->_parent[y]->Get_size(); x++)
+		{
+			for (int x2 = 0; x2 < _my_figure->Get_size(); x2++)
+			{
+
+				if (_parent[y] != _my_figure &&
+					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() == _my_figure->Get_block(x2)->Get_Y() + _my_figure->Get_Y() + 1 &&
+					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() + 1 == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() + 1)
+				{
+
+					_my_figure->Set_state(my_enums::Stop);
+					for (int i = 0; i < _my_figure->Get_size(); i++)
+					{
+						_my_figure->Get_block(i)->Set_move(my_enums::Stop);
+					}
+					
+					return;
+				}
+			}
+		}
+	}
+}
 void Game::move_my_figure_mine(int x,int y)
 {
 	
@@ -263,38 +305,50 @@ bool Game::is_move(int x, int y)
 
 void Game::Check_lines()
 {
-
-	for (int y = 1; y < _my_field->Get_cF_end().Y - 1; y++)
+	bool is_check = true;
+	for (int y = 1; y < _my_field->Get_cF_end().Y-1 ; y++)
 	{
+		is_check = true;
 		for (int x = 1; x < _my_field->Get_cF_end().X - 1; x++)
 		{
+			char g = _my_field->Get_symbol(COORD() = { static_cast<short>(x), static_cast<short>(y) });
 			if (_my_field->Get_symbol(COORD() = { static_cast<short>(x), static_cast<short>(y) })=='.')
 			{
-				return;
+				is_check = false;
 			}
 		}
 
 		//delete line
 
-		
-		Delete_line();
-		Update_status_my_blocs(y);
-
-		
+		if (is_check)
+		{
+			Delete_line(y);
+			Update_status_my_blocs(y);
+			Down_block();
+		}
 	}
 
 }
 
-void Game::Delete_line()
+void Game::Delete_line(int y)
 {
-	for (int y = 1; y < _my_field->Get_cF_end().Y - 1; y++)
-	{
-		for (int x = 1; x < _my_field->Get_cF_end().X - 1; x++)
+	
+		for (int x = 1; x < _my_field->Get_cF_end().X ; x++)
 		{
 			_my_field->Set_symbol(COORD() = { static_cast<short>(x), static_cast<short>(y) }, '.');
-		}
-	}
 
+		}
+	
+		for (int y1 = 0; y1 < this->_count_figures; y1++)
+		{
+			for (int x = 0; x < this->_parent[y1]->Get_size(); x++)
+			{
+				if (_parent[y1]->Get_block(x)->Get_Y() + _parent[y1]->Get_Y() == y)
+				{				
+					_parent[y1]->Remove_block(x);
+				}
+			}
+		}
 
 	_scorre += 100;
 }
@@ -315,11 +369,20 @@ void Game::Update_status_my_blocs(int y)
 
 void Game::Down_block()
 {
+	bool _is_work = true;
+	while(_is_work)
 	for (int y1 = 0; y1 < this->_count_figures; y1++)
 	{
+		_is_work = false;
 		for (int x = 0; x < this->_parent[y1]->Get_size(); x++)
 		{
-			//if()
+			if (_parent[y1]->Get_block(x)->Get_move() == my_enums::DownSys)
+			{
+				_is_work = true;
+				Stop_block(_parent[y1]);
+				_parent[y1]->Move_on(0, 1);
+				
+			}
 		}
 	}
 }
@@ -371,6 +434,7 @@ void Game::UpdateF(float deltaTime)
 
 	if (_my_figure == nullptr)
 	{
+		Check_lines();
 		Figure_Parent * temp = new Figure_Parent(Create_figure(7,1));
 		Add_figure(temp);
 	
@@ -381,7 +445,7 @@ void Game::UpdateF(float deltaTime)
 	Print_preview();
 
 
-	Stop_block(_my_figure);
+	Stop_block();
 
 	Move_my_figure();
 
