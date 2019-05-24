@@ -1,7 +1,4 @@
 ﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  Game.cpp
-  Generating Code...
-  Compiling...
   main.cpp
   BaseApp.cpp
 d:\documents\github\tetris\src_sample\consolengine\performancecounter.h(35): warning C4244: 'return': conversion from 'LONGLONG' to 'int', possible loss of data

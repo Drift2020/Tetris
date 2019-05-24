@@ -164,8 +164,11 @@ void Game::Move_my_figure()
 		}
 	}
 }
-void Game::Stop_block(/*Figure_Parent * _my_figure*/)
+void Game::Stop_block(Figure_Parent *& _my_figure)
 {
+	if (_my_figure == nullptr)
+		return;
+
 	for (int i = 0; i < _my_figure->Get_size(); i++)
 	{
 		//плюс 1 так как локальные y начинается с нуля
@@ -378,7 +381,7 @@ void Game::UpdateF(float deltaTime)
 	Print_preview();
 
 
-	Stop_block(/*_my_figure*/);
+	Stop_block(_my_figure);
 
 	Move_my_figure();
 

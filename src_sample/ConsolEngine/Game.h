@@ -51,7 +51,7 @@ class Game : public BaseApp
 
 		void Move_my_figure();
 
-		void Stop_block(/*Figure_Parent * _my_figure*/);
+		void Stop_block(Figure_Parent *& _my_figure);
 
 		void move_my_figure_mine(int x, int y);
 
