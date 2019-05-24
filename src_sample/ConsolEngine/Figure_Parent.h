@@ -65,7 +65,7 @@ public:
 #pragma region figure
 	void  Move_on(int x, int y);
 	void  Move_to(int x, int y);
-	void  Rotate();
+	void  virtual Rotate();
 #pragma endregion
 
 	

@@ -21,14 +21,7 @@ public:
 	 void  Set_X(int x) override;
 	 void  Set_Y(int y) override;
 	 void  Set_size(int s) override;
+	 void  Rotate() override;
 
-
-	 //Figure_T1(const Figure_T1& obj);// Конструктор копирования------------------
-
-	 //Figure_T1(Figure_T1 && obj);//кoнструктор переноса-----------------------------------
-
-	 //Figure_T1  &operator =(Figure_T1  && obj) ;//Присв с переносом --------------------------
-
-	 //Figure_T1  &operator =(const Figure_T1  & obj);//Присв с копированием --------------------------
 };
 
