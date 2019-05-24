@@ -18,6 +18,7 @@ namespace my_enums {
 		Down,
 		RunDown,
 		Stop,
+		DownSys
 		
 	};
 

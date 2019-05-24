@@ -164,7 +164,7 @@ void Game::Move_my_figure()
 		}
 	}
 }
-void Game::Stop_block()
+void Game::Stop_block(/*Figure_Parent * _my_figure*/)
 {
 	for (int i = 0; i < _my_figure->Get_size(); i++)
 	{
@@ -252,8 +252,78 @@ bool Game::is_move(int x, int y)
 
 	return true;
 }
+
 #pragma endregion
 
+
+#pragma region scorre
+
+void Game::Check_lines()
+{
+
+	for (int y = 1; y < _my_field->Get_cF_end().Y - 1; y++)
+	{
+		for (int x = 1; x < _my_field->Get_cF_end().X - 1; x++)
+		{
+			if (_my_field->Get_symbol(COORD() = { static_cast<short>(x), static_cast<short>(y) })=='.')
+			{
+				return;
+			}
+		}
+
+		//delete line
+
+		
+		Delete_line();
+		Update_status_my_blocs(y);
+
+		
+	}
+
+}
+
+void Game::Delete_line()
+{
+	for (int y = 1; y < _my_field->Get_cF_end().Y - 1; y++)
+	{
+		for (int x = 1; x < _my_field->Get_cF_end().X - 1; x++)
+		{
+			_my_field->Set_symbol(COORD() = { static_cast<short>(x), static_cast<short>(y) }, '.');
+		}
+	}
+
+
+	_scorre += 100;
+}
+
+void Game::Update_status_my_blocs(int y)
+{
+	for (int y1 = 0; y1 < this->_count_figures; y1++)
+	{
+		for (int x = 0; x < this->_parent[y1]->Get_size(); x++)
+		{
+			if (_parent[y1]->Get_block(x)->Get_Y() + _parent[y1]->Get_Y() + 1 > y)
+			{
+				_parent[y1]->Get_block(x)->Set_move(my_enums::DownSys);
+			}
+		}
+	}
+}
+
+void Game::Down_block()
+{
+	for (int y1 = 0; y1 < this->_count_figures; y1++)
+	{
+		for (int x = 0; x < this->_parent[y1]->Get_size(); x++)
+		{
+			//if()
+		}
+	}
+}
+
+
+
+#pragma endregion
 
 void Game::KeyPressed(int btnCode)//передвижение объекта
 {
@@ -308,7 +378,7 @@ void Game::UpdateF(float deltaTime)
 	Print_preview();
 
 
-	Stop_block();
+	Stop_block(/*_my_figure*/);
 
 	Move_my_figure();
 
