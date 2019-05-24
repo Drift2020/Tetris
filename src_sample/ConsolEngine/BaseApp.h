@@ -20,8 +20,10 @@ private:
 	COORD mDwBufferCoord;
 	SMALL_RECT mLpWriteRegion;
 
+	
 	void Render();
-
+protected:
+	bool _is_game;
 public:
 	//размеры области вывода по горизонтали и вертикали в символах
 	const int X_SIZE;

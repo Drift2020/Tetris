@@ -27,7 +27,7 @@ BaseApp::BaseApp(int xSize, int ySize) : X_SIZE(xSize), Y_SIZE(ySize)
 	{
 		cout << "SetConsoleWindowInfo failed with error " << GetLastError() << endl;
 	}
-
+	_is_game = true;
 	//получаем курсор
 	CONSOLE_CURSOR_INFO cursorInfo;
 	GetConsoleCursorInfo(mConsole, &cursorInfo);
@@ -100,7 +100,7 @@ void BaseApp::Run()
 	int counter = 0;
 
 	int deltaTime = 0;
-	while (1)
+	while (_is_game)
 	{
 		timer.Start();
 		if (kbhit())

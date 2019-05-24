@@ -47,10 +47,6 @@ Figure_T1::~Figure_T1()
 
 }
 
-Figure_T1::Figure_T1(const int x, const int y, const int size, Block ** blocks) :Figure_Parent(x, y,size, blocks)
-{
-	
-}
 
 
 void Figure_T1::Remove_block(int i)

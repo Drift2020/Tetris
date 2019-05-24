@@ -141,12 +141,7 @@ Figure_Parent & Figure_Parent::operator=(const Figure_Parent & obj)
 	return *this;
 }
 
-Figure_Parent::Figure_Parent(const int x, const int y, const int size, Block ** blocks)
-{
-	 _x = x;
-	 _y = y;
-	 _blocks = blocks;
-}
+
 
 Figure_Parent::~Figure_Parent()
 {

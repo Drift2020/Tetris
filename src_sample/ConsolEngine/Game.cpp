@@ -67,6 +67,7 @@ void Game::Print_preview()
 
 Game::Game() : Parent(26, 25)
 {
+
 	_size_creators = 1;
 	_count_figures = 1;
 	_my_field = new Field();
@@ -86,12 +87,22 @@ Game::Game() : Parent(26, 25)
 	time_my_figure = false;
 }
 
-#pragma region Create
+#pragma region Create and end
 //изменить рандом
 Figure_Parent & Game::Create_figure(int x, int y)
 {
 	int random_number = 0 + rand() % _size_creators;
+
+
+
 	return *_creators[0]->FactoryMethod(x,y);
+}
+
+bool Game::is_create(int x, int y)
+{
+
+
+	return true;
 }
 
 void Game::Add_figure(Figure_Parent * b)
@@ -147,6 +158,35 @@ void Game::Print_my_figure_in_field()
 			static_cast<short>(_my_figure->Get_block(i)->Get_Y() + _my_figure->Get_Y()), _my_figure->Get_block(i)->Get_symbol());
 	}
 	//после должно быть падение фигуры
+}
+
+void Game::End_game()
+{
+	for (int y = 0; y < this->_count_figures; y++)
+	{
+		for (int x = 0; x < this->_parent[y]->Get_size(); x++)
+		{
+			for (int x1 = 0; x1 < this->_my_figure->Get_size(); x1++)
+			{
+				if ((_parent[y]->Get_state() == my_enums::Down || _parent[y]->Get_state() == my_enums::DownSys) &&
+					(
+					(_my_figure->Get_block(x1)->Get_X()+ _my_figure->Get_X()==_parent[y]->Get_X()+ _parent[y]->Get_block(x)->Get_X()&&
+					_my_figure->Get_block(x1)->Get_Y() + _my_figure->Get_Y() == _parent[y]->Get_Y() + _parent[y]->Get_block(x)->Get_Y()&&
+						_my_figure!= _parent[y])
+						|| 
+						_my_figure->Get_block(x1)->Get_X() + _my_figure->Get_X() == _parent[y]->Get_X() + _parent[y]->Get_block(x)->Get_X() &&
+						_my_figure->Get_block(x1)->Get_Y() + _my_figure->Get_Y() +1== _parent[y]->Get_Y() + _parent[y]->Get_block(x)->Get_Y()&&
+						_my_figure != _parent[y]
+						) && _my_figure->Get_Y()==1
+					)
+				{
+					_is_game = false;
+					return;
+				}
+			}
+		}
+
+	}
 }
 
 #pragma endregion
@@ -468,9 +508,12 @@ void Game::UpdateF(float deltaTime)
 	if (_my_figure == nullptr)
 	{
 		Check_lines();
-		Figure_Parent * temp = new Figure_Parent(Create_figure(7,1));
-		Add_figure(temp);
-	
+		if (is_create(7, 1))
+		{			
+			Figure_Parent * temp = new Figure_Parent(Create_figure(7, 1));
+			Add_figure(temp);
+		}
+		End_game();
 	}
 
 	

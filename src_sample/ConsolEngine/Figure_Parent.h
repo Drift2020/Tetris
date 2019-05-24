@@ -20,7 +20,7 @@ protected:
 public:
 #pragma region system
 	Figure_Parent();
-	Figure_Parent(const int x, const int y, const int size, Block ** blocks);
+
 	Figure_Parent(int x, int y);
 
 	Figure_Parent(const Figure_Parent& obj);// Конструктор копирования------------------

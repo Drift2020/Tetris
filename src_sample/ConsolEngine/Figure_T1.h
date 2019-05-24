@@ -4,7 +4,7 @@ class Figure_T1 :
 	public Figure_Parent
 {
 public:
-	Figure_T1(const int x, const int y,const int size, Block** blocks);
+
 	Figure_T1(int x, int y);
 	Figure_T1();
 	 ~Figure_T1() override;
