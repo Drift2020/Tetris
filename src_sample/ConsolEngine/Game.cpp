@@ -187,10 +187,7 @@ void Game::Stop_block()
 		{
 			for (int x2 = 0; x2 < _my_figure->Get_size(); x2++)
 			{
-				int n1 = _parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() + 1;
-				int n2 = _my_figure->Get_block(x2)->Get_Y() + _my_figure->Get_Y() + 1;
-				int n3 = _parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() + 1;
-				int n4 = _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() + 1;
+			
 				if (_parent[y]!=_my_figure &&
 					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y()== _my_figure->Get_block(x2)->Get_Y()+ _my_figure->Get_Y()+1&&
 					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() + 1 == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X()+1)
@@ -223,12 +220,36 @@ bool Game::is_move(int x, int y)
 	{
 		if (_my_field->Get_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(x1)->Get_X()+ x+ _my_figure->Get_X()),
 											  static_cast<short>(_my_figure->Get_block(x1)->Get_Y() + y + _my_figure->Get_Y()) }) == '#'||
-			_my_field->Get_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(x1)->Get_X() -1- x + _my_figure->Get_X()),
-											  static_cast<short>(_my_figure->Get_block(x1)->Get_Y() + y + _my_figure->Get_Y()) }) == '#')
+			_my_field->Get_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(x1)->Get_X() + x + _my_figure->Get_X()+2),//из-за локальных coord +2
+											  static_cast<short>(_my_figure->Get_block(x1)->Get_Y() + y + _my_figure->Get_Y()) }) == '#'
+			)
 		{
 			return false;
 		}
 	}
+
+	for (int y = 0; y < this->_count_figures; y++)
+	{
+		for (int x = 0; x < this->_parent[y]->Get_size(); x++)
+		{
+			for (int x2 = 0; x2 < _my_figure->Get_size(); x2++)
+			{
+
+				if (_parent[y] != _my_figure &&
+					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() +1 == _my_figure->Get_block(x2)->Get_Y() + _my_figure->Get_Y()+1  &&
+					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X()  == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() + 1 ||
+				(_parent[y] != _my_figure &&
+					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() + 1 == _my_figure->Get_block(x2)->Get_Y() + _my_figure->Get_Y() + 1 &&
+					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() -1))
+				{
+
+					return false;
+				}
+			}
+		}
+	}
+
+
 	return true;
 }
 #pragma endregion
