@@ -67,6 +67,12 @@
     <ClCompile Include="Creator.cpp">
       <Filter>sources\CreatorF</Filter>
     </ClCompile>
+    <ClCompile Include="Creator_T2.cpp">
+      <Filter>sources\CreatorF</Filter>
+    </ClCompile>
+    <ClCompile Include="Creator_T3.cpp">
+      <Filter>sources\CreatorF</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseApp.h">
@@ -116,6 +122,12 @@
     </ClInclude>
     <ClInclude Include="Field.h">
       <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Creator_T2.h">
+      <Filter>Header\CreatorF</Filter>
+    </ClInclude>
+    <ClInclude Include="Creator_T3.h">
+      <Filter>Header\CreatorF</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

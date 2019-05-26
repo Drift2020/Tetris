@@ -22,6 +22,8 @@ protected:
 		Creator ** _creators;
 		Figure_Parent ** _parent;
 
+		Figure_Parent * _next_figure;
+
 		Figure_Parent * _my_figure;
 		Figure_Parent * _old_my_figure;
 

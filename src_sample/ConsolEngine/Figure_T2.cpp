@@ -119,22 +119,6 @@ Figure_T2 & Figure_T2::operator=(const Figure_T2 & obj)
 	if (this != &obj)
 	{
 		Figure_Parent::operator= (obj);
-		/*	this->_x = obj._x;
-			this->_y = obj._y;
-			this->_state_block = obj._state_block;
-			this->_state = obj._state;
-			this->_size = obj._size;
-			this->_state_rotate = obj._state_rotate;
-
-
-			_blocks = new Block*[_size];
-
-			for (int i = 0; i < _size; i++)
-			{
-
-				_blocks[i] = new Block(*obj._blocks[i]);
-			}
-	*/
 
 	}
 	return *this;
@@ -147,13 +131,13 @@ Figure_T2::Figure_T2(int x, int y) : Figure_Parent(x, y)
 	_blocks = new Block *[_size];
 
 
-	_blocks[0] = new  Block(0, 0, '&', my_enums::Stop);
+	_blocks[0] = new  Block(1, 0, '&', my_enums::Stop);
 
-	_blocks[1] = new  Block(0, 1, '&', my_enums::Stop);
+	_blocks[1] = new  Block(1, 1, '&', my_enums::Stop);
 
-	_blocks[2] = new  Block(0, 2, '&', my_enums::Stop);
+	_blocks[2] = new  Block(1, 2, '&', my_enums::Stop);
 
-	_blocks[3] = new Block(1, 2, '&', my_enums::Stop);
+	_blocks[3] = new Block(0, 2, '&', my_enums::Stop);
 
 }
 
@@ -288,16 +272,16 @@ void Figure_T2::Rotate()
 		_state_rotate = my_enums::Right;
 
 		_blocks[0]->Set_X(0);
-		_blocks[0]->Set_Y(1);
+		_blocks[0]->Set_Y(0);
 
 		_blocks[1]->Set_X(1);
-		_blocks[1]->Set_Y(1);
+		_blocks[1]->Set_Y(0);
 
 		_blocks[2]->Set_X(2);
-		_blocks[2]->Set_Y(1);
+		_blocks[2]->Set_Y(0);
 
 		_blocks[3]->Set_X(2);
-		_blocks[3]->Set_Y(0);
+		_blocks[3]->Set_Y(1);
 
 
 		break;
@@ -312,10 +296,10 @@ void Figure_T2::Rotate()
 		_blocks[1]->Set_X(1);
 		_blocks[1]->Set_Y(0);
 
-		_blocks[2]->Set_X(1);
+		_blocks[2]->Set_X(0);
 		_blocks[2]->Set_Y(1);
 
-		_blocks[3]->Set_X(1);
+		_blocks[3]->Set_X(0);
 		_blocks[3]->Set_Y(2);
 
 
@@ -327,16 +311,16 @@ void Figure_T2::Rotate()
 		_state_rotate = my_enums::Left;
 
 		_blocks[0]->Set_X(0);
-		_blocks[0]->Set_Y(1);
+		_blocks[0]->Set_Y(0);
 
 		_blocks[1]->Set_X(0);
-		_blocks[1]->Set_Y(0);
+		_blocks[1]->Set_Y(1);
 
 		_blocks[2]->Set_X(1);
-		_blocks[2]->Set_Y(0);
+		_blocks[2]->Set_Y(1);
 
 		_blocks[3]->Set_X(2);
-		_blocks[3]->Set_Y(0);
+		_blocks[3]->Set_Y(1);
 
 
 		break;
@@ -345,16 +329,16 @@ void Figure_T2::Rotate()
 
 		_state_rotate = my_enums::DOWN;
 
-		_blocks[0]->Set_X(0);
+		_blocks[0]->Set_X(1);
 		_blocks[0]->Set_Y(0);
 
-		_blocks[1]->Set_X(0);
+		_blocks[1]->Set_X(1);
 		_blocks[1]->Set_Y(1);
 
-		_blocks[2]->Set_X(0);
+		_blocks[2]->Set_X(1);
 		_blocks[2]->Set_Y(2);
 
-		_blocks[3]->Set_X(1);
+		_blocks[3]->Set_X(0);
 		_blocks[3]->Set_Y(2);
 
 

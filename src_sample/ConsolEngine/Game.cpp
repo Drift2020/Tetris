@@ -3,6 +3,8 @@
 #include "Game.h"
 #include "Creator.h"
 #include "Creator_T1.h"
+#include "Creator_T3.h"
+#include "Creator_T2.h"
 #include "Figure_Parent.h"
 #pragma region Print
 
@@ -69,13 +71,14 @@ void Game::Print_preview()
 Game::Game() : Parent(26, 25)
 {
 
-	_size_creators = 1;
+	_size_creators = 3;
 	_count_figures = 1;
 	_my_field = new Field();
 	_creators = new Creator*[_size_creators];
 
 	_creators[0] = new  Creator_T1();
-
+	_creators[1] = new  Creator_T2();
+	_creators[2] = new  Creator_T3();
 
 	_parent = new Figure_Parent*[_count_figures];
 	//_parent[0] = (Figure_Parent*)malloc(sizeof(Figure_Parent));
@@ -83,6 +86,9 @@ Game::Game() : Parent(26, 25)
 	_parent[0] = Create_figure(7,1);
 
 	_scorre = 0;
+
+	_next_figure= Create_figure(7, 1);
+
 	_my_figure = &*_parent[0];
 //	_old_my_figure = (Figure_Parent*)malloc(sizeof(Figure_Parent));
 	_old_my_figure = Create_figure(7, 1);
@@ -94,16 +100,38 @@ Game::Game() : Parent(26, 25)
 //изменить рандом
 Figure_Parent * Game::Create_figure(int x, int y)
 {
-	int random_number = 0 + rand() % _size_creators;
+	int random_number = 0 + rand() % (_size_creators);
 
 
 
-	return _creators[0]->FactoryMethod(x,y);
+	return _creators[random_number]->FactoryMethod(x,y);
 }
 
 bool Game::is_create(int x, int y)
 {
+	for (int y = 0; y < this->_count_figures; y++)
+	{
+		for (int x = 0; x < this->_parent[y]->Get_size(); x++)
+		{
+			for (int x1 = 0; x1 < this->_next_figure->Get_size(); x1++)
+			{
+				if (
+					(_parent[y] != _next_figure &&
+						_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() + 1 == _next_figure->Get_block(x1)->Get_Y() + _next_figure->Get_Y() &&
+						_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() == _next_figure->Get_block(x1)->Get_X() + _next_figure->Get_X())
+					||
+					(_parent[y] != _next_figure &&
+						_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() + 1 == _next_figure->Get_block(x1)->Get_Y() + _next_figure->Get_Y() &&
+						_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() == _next_figure->Get_block(x1)->Get_X() + _next_figure->Get_X())
+					)
+				{
+					
+					return false;
+				}
+			}
+		}
 
+	}
 
 	return true;
 }
@@ -170,31 +198,10 @@ void Game::Print_my_figure_in_field()
 
 void Game::End_game()
 {
-	for (int y = 0; y < this->_count_figures; y++)
-	{
-		for (int x = 0; x < this->_parent[y]->Get_size(); x++)
-		{
-			for (int x1 = 0; x1 < this->_my_figure->Get_size(); x1++)
-			{
-				if ((_parent[y]->Get_state() == my_enums::Down || _parent[y]->Get_state() == my_enums::DownSys) &&
-					(
-					(_my_figure->Get_block(x1)->Get_X()+ _my_figure->Get_X()==_parent[y]->Get_X()+ _parent[y]->Get_block(x)->Get_X()&&
-					_my_figure->Get_block(x1)->Get_Y() + _my_figure->Get_Y() == _parent[y]->Get_Y() + _parent[y]->Get_block(x)->Get_Y()&&
-						_my_figure!= _parent[y])
-						|| 
-						_my_figure->Get_block(x1)->Get_X() + _my_figure->Get_X() == _parent[y]->Get_X() + _parent[y]->Get_block(x)->Get_X() &&
-						_my_figure->Get_block(x1)->Get_Y() + _my_figure->Get_Y() +1== _parent[y]->Get_Y() + _parent[y]->Get_block(x)->Get_Y()&&
-						_my_figure != _parent[y]
-						) && _my_figure->Get_Y()==1
-					)
-				{
+
 					_is_game = false;
 					return;
-				}
-			}
-		}
-
-	}
+		
 }
 
 #pragma endregion
@@ -358,10 +365,12 @@ bool Game::is_move(int x, int y)
 			for (int x2 = 0; x2 < _my_figure->Get_size(); x2++)
 			{
 
-				if (_parent[y] != _my_figure &&
+				if ((_parent[y] != _my_figure &&
 					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() +1 == _my_figure->Get_block(x2)->Get_Y() + _my_figure->Get_Y()+1  &&
-					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X()  == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() + 1 ||
-				(_parent[y] != _my_figure &&
+					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X()  == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() + 1 )
+					||
+				
+					(_parent[y] != _my_figure &&
 					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() + 1 == _my_figure->Get_block(x2)->Get_Y() + _my_figure->Get_Y() + 1 &&
 					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() -1))
 				{
@@ -534,14 +543,18 @@ void Game::UpdateF(float deltaTime)
 		Check_lines();
 		if (is_create(7, 1))
 		{			
-			Figure_Parent * temp =  Create_figure(7, 1);
-			Add_figure(temp);
+			
+			Add_figure(_next_figure);
+			_next_figure = Create_figure(7, 1);
 		}
-		End_game();
+		else
+		{
+			End_game();
+		}
 	}
 
 	
-	_my_field->Set_preview(_my_figure->Get_state_block());
+	_my_field->Set_preview(_next_figure->Get_state_block());
 	Print_preview();
 
 

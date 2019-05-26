@@ -26,19 +26,7 @@ Figure_T1::Figure_T1() : Figure_Parent()
 
 Figure_T1::Figure_T1(const Figure_T1 & obj):Figure_Parent(obj)
 {
-	/*this->_x = obj._x;
-	this->_y = obj._y;
-	this->_state_block = obj._state_block;
-	this->_state = obj._state;
-	this->_size = obj._size;
-	this->_state_rotate = obj._state_rotate;
-	_blocks = new Block*[_size];
-
-	for (int i = 0; i < _size; i++)
-	{
-
-		_blocks[i] = new Block(*obj._blocks[i]);
-	}*/
+	
 }
 
 Figure_T1::Figure_T1(Figure_T1 && obj)
