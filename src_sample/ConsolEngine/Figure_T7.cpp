@@ -271,16 +271,16 @@ void Figure_T7::Rotate()
 
 		_state_rotate = my_enums::Right;
 
-		_blocks[0]->Set_X(0);
+		_blocks[0]->Set_X(1);
 		_blocks[0]->Set_Y(0);
 
-		_blocks[1]->Set_X(0);
+		_blocks[1]->Set_X(1);
 		_blocks[1]->Set_Y(1);
 
-		_blocks[2]->Set_X(1);
+		_blocks[2]->Set_X(0);
 		_blocks[2]->Set_Y(1);
 
-		_blocks[3]->Set_X(1);
+		_blocks[3]->Set_X(0);
 		_blocks[3]->Set_Y(2);
 
 
@@ -290,16 +290,16 @@ void Figure_T7::Rotate()
 
 		_state_rotate = my_enums::UP;
 
-		_blocks[0]->Set_X(1);
+		_blocks[0]->Set_X(0);
 		_blocks[0]->Set_Y(0);
 
-		_blocks[1]->Set_X(2);
+		_blocks[1]->Set_X(1);
 		_blocks[1]->Set_Y(0);
 
-		_blocks[2]->Set_X(0);
+		_blocks[2]->Set_X(1);
 		_blocks[2]->Set_Y(1);
 
-		_blocks[3]->Set_X(1);
+		_blocks[3]->Set_X(2);
 		_blocks[3]->Set_Y(1);
 
 
@@ -310,16 +310,16 @@ void Figure_T7::Rotate()
 
 		_state_rotate = my_enums::Left;
 
-		_blocks[0]->Set_X(0);
+		_blocks[0]->Set_X(1);
 		_blocks[0]->Set_Y(0);
 
-		_blocks[1]->Set_X(0);
+		_blocks[1]->Set_X(1);
 		_blocks[1]->Set_Y(1);
 
-		_blocks[2]->Set_X(1);
+		_blocks[2]->Set_X(0);
 		_blocks[2]->Set_Y(1);
 
-		_blocks[3]->Set_X(1);
+		_blocks[3]->Set_X(0);
 		_blocks[3]->Set_Y(2);
 
 
@@ -330,16 +330,16 @@ void Figure_T7::Rotate()
 		_state_rotate = my_enums::DOWN;
 
 
-		_blocks[0]->Set_X(1);
+		_blocks[0]->Set_X(0);
 		_blocks[0]->Set_Y(0);
 
-		_blocks[1]->Set_X(2);
+		_blocks[1]->Set_X(1);
 		_blocks[1]->Set_Y(0);
 
-		_blocks[2]->Set_X(0);
+		_blocks[2]->Set_X(1);
 		_blocks[2]->Set_Y(1);
 
-		_blocks[3]->Set_X(1);
+		_blocks[3]->Set_X(2);
 		_blocks[3]->Set_Y(1);
 
 
