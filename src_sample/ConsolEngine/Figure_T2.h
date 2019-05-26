@@ -12,7 +12,7 @@ public:
 	Figure_T2(Figure_T2 && obj);//кoнструктор переноса-----------------------------------
 	Figure_T2  &operator =(Figure_T2  && obj);//Присв с переносом --------------------------
 	Figure_T2  &operator =(const Figure_T2  & obj);//Присв с копированием --------------------------
-	~Figure_T1();
+	~Figure_T2();
 #pragma endregion
 
 #pragma region block

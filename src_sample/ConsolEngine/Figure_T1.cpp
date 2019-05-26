@@ -43,6 +43,8 @@ Figure_T1::Figure_T1(const Figure_T1 & obj):Figure_Parent(obj)
 
 Figure_T1::Figure_T1(Figure_T1 && obj)
 {
+
+
 	this->_x = obj._x;
 	this->_y = obj._y;
 	this->_state_block = obj._state_block;
@@ -51,24 +53,41 @@ Figure_T1::Figure_T1(Figure_T1 && obj)
 	this->_state_rotate = obj._state_rotate;
 	_blocks = new Block*[_size];
 
+	//old
+	//for (int i = 0; i < _size; i++)
+	//{
+
+	//	_blocks[i] = new Block(*obj._blocks[i]);
+	//}
+
+
 	for (int i = 0; i < _size; i++)
 	{
 
-		_blocks[i] = new Block(*obj._blocks[i]);
+		_blocks[i] = obj._blocks[i];
 	}
-
 
 	obj._x = 0;
 	obj._y = 0;
 	obj._state_rotate = my_enums::NONE;
 	obj._state = my_enums::None;
 	obj._state_block = my_enums::NoneT;
+
+
 	for (int i = 0; i < obj._size; i++)
+	{
+
+		obj._blocks[i] = nullptr;
+	}
+	delete[]obj._blocks;
+
+	//old
+	/*for (int i = 0; i < obj._size; i++)
 	{
 		if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
 			delete obj._blocks[i];
 	}
-	delete[]obj._blocks;
+	delete[]obj._blocks;*/
 
 	obj._size = 0;
 }
@@ -101,10 +120,18 @@ Figure_T1 & Figure_T1::operator=(Figure_T1 && obj)
 
 		for (int i = 0; i < obj._size; i++)
 		{
+
+			obj._blocks[i] = nullptr;
+		}
+		delete[]obj._blocks;
+
+		//old
+		/*for (int i = 0; i < obj._size; i++)
+		{
 			if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
 				delete obj._blocks[i];
 		}
-		delete[]obj._blocks;
+		delete[]obj._blocks;*/
 
 		obj._size = 0;
 	}
@@ -116,22 +143,6 @@ Figure_T1 & Figure_T1::operator=(const Figure_T1 & obj)
 	if (this != &obj)
 	{
 		Figure_Parent::operator= (obj);
-	/*	this->_x = obj._x;
-		this->_y = obj._y;
-		this->_state_block = obj._state_block;
-		this->_state = obj._state;
-		this->_size = obj._size;
-		this->_state_rotate = obj._state_rotate;
-
-
-		_blocks = new Block*[_size];
-
-		for (int i = 0; i < _size; i++)
-		{
-
-			_blocks[i] = new Block(*obj._blocks[i]);
-		}
-*/
 
 	}
 	return *this;
@@ -157,7 +168,7 @@ Figure_T1::Figure_T1(int x,int y) : Figure_Parent(x,y)
 
 Figure_T1::~Figure_T1()
 {
-
+	
 }
 
 

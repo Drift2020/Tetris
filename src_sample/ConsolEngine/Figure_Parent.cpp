@@ -58,15 +58,23 @@ Figure_Parent::Figure_Parent(Figure_Parent && obj)
 	for (int i = 0; i < _size; i++)
 	{
 	
-		_blocks[i]= new Block(*obj._blocks[i]);
+		_blocks[i]= obj._blocks[i];
 	}
 
+	//old
+	//for (int i = 0; i < _size; i++)
+	//{
+
+	//	_blocks[i] = new Block(*obj._blocks[i]);
+	//}
 
 	obj._x=0;
 	obj._y=0;
 	obj._state_rotate = my_enums::NONE;
 	obj._state= my_enums::None;
 	obj._state_block=my_enums::NoneT;
+
+	//old
 	//for (int i = 0; i < obj._size; i++)
 	//{
 	//	if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
