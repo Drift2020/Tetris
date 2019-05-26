@@ -94,6 +94,10 @@
     <ClCompile Include="Creator_T1.cpp" />
     <ClCompile Include="Creator_T2.cpp" />
     <ClCompile Include="Creator_T3.cpp" />
+    <ClCompile Include="Creator_T4.cpp" />
+    <ClCompile Include="Creator_T5.cpp" />
+    <ClCompile Include="Creator_T6.cpp" />
+    <ClCompile Include="Creator_T7.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Figure_Parent.cpp" />
     <ClCompile Include="Figure_T1.cpp" />
@@ -113,6 +117,10 @@
     <ClInclude Include="Creator_T1.h" />
     <ClInclude Include="Creator_T2.h" />
     <ClInclude Include="Creator_T3.h" />
+    <ClInclude Include="Creator_T4.h" />
+    <ClInclude Include="Creator_T5.h" />
+    <ClInclude Include="Creator_T6.h" />
+    <ClInclude Include="Creator_T7.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Figure_Parent.h" />

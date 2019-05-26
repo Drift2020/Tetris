@@ -3,10 +3,12 @@
 #include "Game.h"
 #include "Creator.h"
 #include "Creator_T1.h"
-#include "Creator_T3.h"
 #include "Creator_T2.h"
+#include "Creator_T3.h"
+#include "Creator_T4.h"
 #include "Figure_Parent.h"
 #pragma region Print
+
 
 void Game::Print_field()
 {
@@ -71,7 +73,7 @@ void Game::Print_preview()
 Game::Game() : Parent(26, 25)
 {
 
-	_size_creators = 3;
+	_size_creators = 4;
 	_count_figures = 1;
 	_my_field = new Field();
 	_creators = new Creator*[_size_creators];
@@ -79,6 +81,7 @@ Game::Game() : Parent(26, 25)
 	_creators[0] = new  Creator_T1();
 	_creators[1] = new  Creator_T2();
 	_creators[2] = new  Creator_T3();
+	_creators[3] = new  Creator_T4();
 
 	_parent = new Figure_Parent*[_count_figures];
 	//_parent[0] = (Figure_Parent*)malloc(sizeof(Figure_Parent));
@@ -97,7 +100,14 @@ Game::Game() : Parent(26, 25)
 }
 
 #pragma region Create and end
-//изменить рандом
+
+
+Figure_Parent * Game::Create_figure(Figure_Parent * obj)
+{
+	return nullptr;
+}
+
+
 Figure_Parent * Game::Create_figure(int x, int y)
 {
 	int random_number = 0 + rand() % (_size_creators);
@@ -164,7 +174,11 @@ void Game::Add_figure(Figure_Parent * b)
 
 		_parent[i] =  temp[i];
 	}
-	_my_figure = &*_parent[_count_figures - 1];
+
+	//_my_figure = Create_figure(0, 0);
+	//delete _my_figure;
+
+	_my_figure = *&_parent[_count_figures - 1];
 
 	for (int i = 0; i < _count_figures; i++)
 	{
@@ -545,7 +559,9 @@ void Game::UpdateF(float deltaTime)
 		{			
 			
 			Add_figure(_next_figure);
+			_next_figure = nullptr;
 			_next_figure = Create_figure(7, 1);
+
 		}
 		else
 		{

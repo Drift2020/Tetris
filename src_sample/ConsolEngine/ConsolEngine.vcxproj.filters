@@ -73,6 +73,18 @@
     <ClCompile Include="Creator_T3.cpp">
       <Filter>sources\CreatorF</Filter>
     </ClCompile>
+    <ClCompile Include="Creator_T4.cpp">
+      <Filter>sources\CreatorF</Filter>
+    </ClCompile>
+    <ClCompile Include="Creator_T6.cpp">
+      <Filter>sources\CreatorF</Filter>
+    </ClCompile>
+    <ClCompile Include="Creator_T5.cpp">
+      <Filter>sources\CreatorF</Filter>
+    </ClCompile>
+    <ClCompile Include="Creator_T7.cpp">
+      <Filter>sources\CreatorF</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseApp.h">
@@ -127,6 +139,18 @@
       <Filter>Header\CreatorF</Filter>
     </ClInclude>
     <ClInclude Include="Creator_T3.h">
+      <Filter>Header\CreatorF</Filter>
+    </ClInclude>
+    <ClInclude Include="Creator_T4.h">
+      <Filter>Header\CreatorF</Filter>
+    </ClInclude>
+    <ClInclude Include="Creator_T5.h">
+      <Filter>Header\CreatorF</Filter>
+    </ClInclude>
+    <ClInclude Include="Creator_T6.h">
+      <Filter>Header\CreatorF</Filter>
+    </ClInclude>
+    <ClInclude Include="Creator_T7.h">
       <Filter>Header\CreatorF</Filter>
     </ClInclude>
   </ItemGroup>

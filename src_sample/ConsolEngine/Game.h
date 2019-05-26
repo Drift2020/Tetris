@@ -30,6 +30,9 @@ protected:
 		std::chrono::system_clock::time_point start_time_figure;
 		std::chrono::system_clock::time_point end_time_figure;
 		bool time_my_figure;
+
+
+		
 #pragma region print
 
 		void Print_field();
@@ -45,6 +48,7 @@ protected:
 
 		void End_game();
 		void Print_my_figure_in_field();
+		Figure_Parent * Create_figure(Figure_Parent * obj);
 #pragma endregion
 
 	

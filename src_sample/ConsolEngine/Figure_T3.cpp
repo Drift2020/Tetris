@@ -10,7 +10,7 @@
 Figure_T3::Figure_T3() : Figure_Parent()
 {
 	_size = 4;
-	this->_state_block = my_enums::T2;
+	this->_state_block = my_enums::T3;
 	_blocks = new Block*[_size];
 
 
@@ -127,18 +127,18 @@ Figure_T3 & Figure_T3::operator=(const Figure_T3 & obj)
 Figure_T3::Figure_T3(int x, int y) : Figure_Parent(x, y)
 {
 	_size = 4;
-	this->_state_block = my_enums::T2;
+	this->_state_block = my_enums::T3;
 	_blocks = new Block *[_size];
 
 
 
-	_blocks[0] = new  Block(1, 1, '&', my_enums::Down);;
+	_blocks[0] = new  Block(1, 0, '&', my_enums::Down);;
 
-	_blocks[1] = new  Block(0, 0, '&', my_enums::Down);
+	_blocks[1] = new  Block(0, 1, '&', my_enums::Down);
 
-	_blocks[2] = new  Block(1, 0, '&', my_enums::Down);
+	_blocks[2] = new  Block(1, 1, '&', my_enums::Down);
 
-	_blocks[3] = new Block(2, 0, '&', my_enums::Down);
+	_blocks[3] = new Block(2, 1, '&', my_enums::Down);
 
 }
 

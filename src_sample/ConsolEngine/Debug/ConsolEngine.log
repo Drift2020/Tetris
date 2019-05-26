@@ -1,3 +1,18 @@
 ﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  Figure_T3.cpp
-  ConsolEngine.vcxproj -> D:\Documents\GitHub\Tetris\src_sample\Debug\ConsolEngine.exe
+  Game.cpp
+  Figure_T4.cpp
+  Creator_T7.cpp
+d:\documents\github\tetris\src_sample\consolengine\creator_t7.cpp(17): error C2061: syntax error: identifier 'Figure_T7'
+d:\documents\github\tetris\src_sample\consolengine\creator_t7.cpp(17): error C2143: syntax error: missing ';' before ')'
+d:\documents\github\tetris\src_sample\consolengine\creator_t7.cpp(17): error C2059: syntax error: ')'
+  Creator_T6.cpp
+d:\documents\github\tetris\src_sample\consolengine\creator_t6.cpp(17): error C2061: syntax error: identifier 'Figure_T6'
+d:\documents\github\tetris\src_sample\consolengine\creator_t6.cpp(17): error C2143: syntax error: missing ';' before ')'
+d:\documents\github\tetris\src_sample\consolengine\creator_t6.cpp(17): error C2059: syntax error: ')'
+  Creator_T5.cpp
+d:\documents\github\tetris\src_sample\consolengine\creator_t5.cpp(17): error C2061: syntax error: identifier 'Figure_T5'
+d:\documents\github\tetris\src_sample\consolengine\creator_t5.cpp(17): error C2143: syntax error: missing ';' before ')'
+d:\documents\github\tetris\src_sample\consolengine\creator_t5.cpp(17): error C2059: syntax error: ')'
+  Creator_T4.cpp
+  Creator_T3.cpp
+  Generating Code...
