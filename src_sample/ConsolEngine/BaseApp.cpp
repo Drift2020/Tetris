@@ -111,6 +111,8 @@ void BaseApp::Run()
 		}
 
 		UpdateF((float)deltaTime / 1000.0f);
+		if (!_is_game)
+			return;
 		Render();
 		Sleep(1);
 
@@ -134,4 +136,5 @@ void BaseApp::Run()
 		}
 	}
 	
+
 }

@@ -63,7 +63,7 @@ protected:
 
 		void move_my_figure_mine(int x, int y);
 
-		bool is_move(int x, int y);
+		bool is_move(int my_x, int y);
 #pragma endregion
 
 

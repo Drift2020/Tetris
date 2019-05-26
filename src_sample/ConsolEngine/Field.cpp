@@ -162,7 +162,7 @@ void Field::Set_symbol(const COORD i, const char s)
 void Field::Set_scorre(const int i,const int y)
 {
 	char temp[100];
-	sprintf(temp, "> Scorre: %d\0", i);
+	sprintf(temp, "> Score: %d\0", i);
 	int size = strlen(temp);
 	for (int i = 3,i1=0; i1 < size; i++,i1++)
 	{

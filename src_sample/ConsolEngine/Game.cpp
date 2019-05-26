@@ -6,6 +6,9 @@
 #include "Creator_T2.h"
 #include "Creator_T3.h"
 #include "Creator_T4.h"
+#include "Creator_T5.h"
+#include "Creator_T6.h"
+#include "Creator_T7.h"
 #include "Figure_Parent.h"
 #pragma region Print
 
@@ -73,7 +76,7 @@ void Game::Print_preview()
 Game::Game() : Parent(26, 25)
 {
 
-	_size_creators = 4;
+	_size_creators = 7;
 	_count_figures = 1;
 	_my_field = new Field();
 	_creators = new Creator*[_size_creators];
@@ -82,6 +85,12 @@ Game::Game() : Parent(26, 25)
 	_creators[1] = new  Creator_T2();
 	_creators[2] = new  Creator_T3();
 	_creators[3] = new  Creator_T4();
+	_creators[4] = new  Creator_T5();
+
+	_creators[5] = new  Creator_T6();
+
+	_creators[6] = new  Creator_T7();
+
 
 	_parent = new Figure_Parent*[_count_figures];
 	//_parent[0] = (Figure_Parent*)malloc(sizeof(Figure_Parent));
@@ -214,7 +223,9 @@ void Game::End_game()
 {
 
 					_is_game = false;
-					return;
+					system("cls");
+					cout << "Game over\nYour score:"<<_scorre;
+				
 		
 }
 
@@ -356,15 +367,15 @@ void Game::move_my_figure_mine(int x,int y)
 	_my_figure->Move_on(x, y);
 	Print_my_figure_in_field();
 }
-bool Game::is_move(int x, int y)
+bool Game::is_move(int my_x, int y)
 {
 	if (_my_figure == nullptr)
 		return false;
 	for (int x1 = 0; x1 < _my_figure->Get_size(); x1++)
 	{
-		if (_my_field->Get_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(x1)->Get_X()+ x+ _my_figure->Get_X()),
+		if (_my_field->Get_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(x1)->Get_X()+ my_x + _my_figure->Get_X()),
 											  static_cast<short>(_my_figure->Get_block(x1)->Get_Y() + y + _my_figure->Get_Y()) }) == '#'||
-			_my_field->Get_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(x1)->Get_X() + x + _my_figure->Get_X()),//из-за локальных coord +2
+			_my_field->Get_symbol(COORD() = { static_cast<short>(_my_figure->Get_block(x1)->Get_X() + my_x + _my_figure->Get_X()),
 											  static_cast<short>(_my_figure->Get_block(x1)->Get_Y() + y + _my_figure->Get_Y()) }) == '#'
 			)
 		{
@@ -381,12 +392,8 @@ bool Game::is_move(int x, int y)
 
 				if ((_parent[y] != _my_figure &&
 					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() +1 == _my_figure->Get_block(x2)->Get_Y() + _my_figure->Get_Y()+1  &&
-					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X()  == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() + 1 )
-					||
-				
-					(_parent[y] != _my_figure &&
-					_parent[y]->Get_block(x)->Get_Y() + _parent[y]->Get_Y() + 1 == _my_figure->Get_block(x2)->Get_Y() + _my_figure->Get_Y() + 1 &&
-					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X() == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() -1))
+					_parent[y]->Get_block(x)->Get_X() + _parent[y]->Get_X()  == _my_figure->Get_block(x2)->Get_X() + _my_figure->Get_X() + my_x)
+					)
 				{
 
 					return false;
@@ -518,11 +525,14 @@ void Game::KeyPressed(int btnCode)//передвижение объекта
 	if (btnCode == 32)
 	{
 		if (_old_my_figure != nullptr)
-		delete _old_my_figure;
+			delete _old_my_figure;
 		_old_my_figure = Create_figure(7, 1);
 		*_old_my_figure = *_my_figure;
 
 		_my_figure->Rotate();
+
+	
+
 		Print_my_figure_in_field();
 
 	}
@@ -566,6 +576,7 @@ void Game::UpdateF(float deltaTime)
 		else
 		{
 			End_game();
+			return;
 		}
 	}
 

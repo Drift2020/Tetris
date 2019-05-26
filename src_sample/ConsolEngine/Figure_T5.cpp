@@ -16,11 +16,11 @@ Figure_T5::Figure_T5() : Figure_Parent()
 
 	_blocks[0] = new  Block(0, 0, '&', my_enums::Down);;
 
-	_blocks[1] = new  Block(0, 1, '&', my_enums::Down);
+	_blocks[1] = new  Block(1, 0,'&', my_enums::Down);
 
-	_blocks[2] = new  Block(1, 1, '&', my_enums::Down);
+	_blocks[2] = new  Block(0, 1, '&', my_enums::Down);
 
-	_blocks[3] = new Block(1, 2, '&', my_enums::Down);
+	_blocks[3] = new Block(1, 1, '&', my_enums::Down);
 	_state = my_enums::Down;
 }
 
@@ -133,11 +133,11 @@ Figure_T5::Figure_T5(int x, int y) : Figure_Parent(x, y)
 
 	_blocks[0] = new  Block(0, 0, '&', my_enums::Down);;
 
-	_blocks[1] = new  Block(0, 1, '&', my_enums::Down);
+	_blocks[1] = new  Block(1, 0, '&', my_enums::Down);
 
-	_blocks[2] = new  Block(1, 1, '&', my_enums::Down);
+	_blocks[2] = new  Block(0, 1, '&', my_enums::Down);
 
-	_blocks[3] = new Block(1, 2, '&', my_enums::Down);
+	_blocks[3] = new Block(1, 1, '&', my_enums::Down);
 }
 
 
