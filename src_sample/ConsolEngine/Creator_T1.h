@@ -8,6 +8,6 @@ public:
 	Creator_T1();
 	~Creator_T1();
 
-	Figure_Parent  FactoryMethod(int x,int y) override;
+	Figure_Parent * FactoryMethod(int x,int y) override;
 };
 

@@ -67,10 +67,17 @@ Figure_Parent::Figure_Parent(Figure_Parent && obj)
 	obj._state_rotate = my_enums::NONE;
 	obj._state= my_enums::None;
 	obj._state_block=my_enums::NoneT;
+	//for (int i = 0; i < obj._size; i++)
+	//{
+	//	if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
+	//		delete obj._blocks[i];
+	//}
+	//delete[]obj._blocks;
+
 	for (int i = 0; i < obj._size; i++)
 	{
-		if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
-			delete obj._blocks[i];
+
+		obj._blocks[i] = nullptr;
 	}
 	delete[]obj._blocks;
 
@@ -94,7 +101,7 @@ Figure_Parent & Figure_Parent::operator=(Figure_Parent && obj)
 		for (int i = 0; i < _size; i++)
 		{
 
-			_blocks[i] = new Block(*obj._blocks[i]);
+			_blocks[i] = obj._blocks[i];
 		}
 
 		obj._state_rotate = my_enums::NONE;
@@ -105,8 +112,8 @@ Figure_Parent & Figure_Parent::operator=(Figure_Parent && obj)
 
 		for (int i = 0; i < obj._size; i++)
 		{
-			if (obj._blocks != nullptr && obj._blocks[i] != nullptr)
-				delete obj._blocks[i];
+			
+				 obj._blocks[i] =nullptr;
 		}
 		delete[]obj._blocks;
 
@@ -129,7 +136,7 @@ Figure_Parent & Figure_Parent::operator=(const Figure_Parent & obj)
 		this->_size = obj._size;
 		this->_state_rotate = obj._state_rotate;
 	
-
+		
 		_blocks = new Block*[_size];
 
 		for (int i = 0; i < _size; i++)
@@ -190,85 +197,6 @@ void Figure_Parent::Remove_block(int i)
 	}
 }
 #pragma endregion
-
-
-//#pragma region get
-//Block Figure_Parent::Get_block(int i)
-//{
-//	return *_blocks[i];
-//}
-//int Figure_Parent::Get_X()
-//{
-//	return _x;
-//}
-//int Figure_Parent::Get_Y()
-//{
-//	return _y;
-//}
-//
-//int   Figure_Parent::Get_size() {
-//	return _size;
-//}
-//my_enums::Move Figure_Parent::Get_state()
-//{
-//	return this->_state;
-//}
-//
-//my_enums::Block Figure_Parent::Get_state_block()
-//{
-//	return _state_block;
-//}
-//
-//
-//#pragma endregion
-//
-//
-//#pragma region set
-//void Figure_Parent::Add_block(Block * block)
-//{
-//
-//}
-//void Figure_Parent::Set_X(int x)
-//{
-//
-//}
-//void Figure_Parent::Set_Y(int y)
-//{
-//
-//}
-//
-//void  Figure_Parent::Set_size(int s)
-//{
-//
-//}
-//void Figure_Parent::Set_state(my_enums::Move _state)
-//{
-//	this->_state = _state;
-//}
-//#pragma endregion
-//
-//
-//#pragma region  move
-//void Figure_Parent::Move_on(int x, int y)
-//{
-//	
-//
-//	_x += x;
-//	_y += y;
-//}
-//void Figure_Parent::Move_to(int x, int y)
-//{
-//
-//}
-//void Figure_Parent::Rotate()
-//{
-//	
-//	
-//	
-//}
-//#pragma endregion
-
-
 
 
 

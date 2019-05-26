@@ -2,10 +2,10 @@
 
 
 
-Figure_Parent  Creator::FactoryMethod(int x,int y)
-{
-	return nullptr;
-}
+//Figure_Parent Creator::FactoryMethod(int x,int y)
+//{
+//	return nullptr;
+//}
 
 Creator::Creator()
 {

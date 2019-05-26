@@ -78,13 +78,15 @@ Game::Game() : Parent(26, 25)
 
 
 	_parent = new Figure_Parent*[_count_figures];
+	//_parent[0] = (Figure_Parent*)malloc(sizeof(Figure_Parent));
 
 	_parent[0] = Create_figure(7,1);
 
 	_scorre = 0;
-	_my_figure = _parent[0];
-	_old_my_figure = nullptr;
-	
+	_my_figure = &*_parent[0];
+//	_old_my_figure = (Figure_Parent*)malloc(sizeof(Figure_Parent));
+	_old_my_figure = Create_figure(7, 1);
+	*_old_my_figure = *(_my_figure);
 	time_my_figure = false;
 }
 
@@ -121,7 +123,7 @@ void Game::Add_figure(Figure_Parent * b)
 
 	for (int i = 0; i < _count_figures; i++)
 	{
-		delete _parent[i];
+		 _parent[i]=nullptr;
 	}
 	delete[] _parent;
 
@@ -134,8 +136,13 @@ void Game::Add_figure(Figure_Parent * b)
 
 		_parent[i] =  temp[i];
 	}
-	_my_figure = _parent[_count_figures - 1];
+	_my_figure = &*_parent[_count_figures - 1];
 
+	for (int i = 0; i < _count_figures; i++)
+	{
+		temp[i] = nullptr;
+	}
+	delete[] temp;
 }
 
 void Game::Print_my_figure_in_field()
@@ -210,10 +217,18 @@ void Game::Move_my_figure()
 
 		if (elapsed_seconds.count() > speed)
 		{
-			if(_old_my_figure!=nullptr)
-			delete _old_my_figure;
+			if (_old_my_figure != nullptr)
+			{
+				delete _old_my_figure;
+				_old_my_figure = Create_figure(7, 1);
+			}
 			
-			*_old_my_figure =*_my_figure;
+
+		/*	if (dynamic_cast <Figure_T1*> (_my_figure))
+				_old_my_figure = _creators[0]->FactoryMethod(7, 1);
+
+*/
+			*(_old_my_figure) =*(_my_figure);
 
 			_my_figure->Move_on(0, 1);
 			Print_field();
@@ -311,9 +326,12 @@ void Game::Stop_block(Figure_Parent *& _my_figure)
 }
 void Game::move_my_figure_mine(int x,int y)
 {
-	
+	if (_old_my_figure != nullptr)
 	delete _old_my_figure;
-	_old_my_figure = _my_figure;
+	_old_my_figure = Create_figure(7, 1);
+
+	*_old_my_figure = *_my_figure;
+
 	_my_figure->Move_on(x, y);
 	Print_my_figure_in_field();
 }
@@ -476,8 +494,11 @@ void Game::KeyPressed(int btnCode)//передвижение объекта
 
 	if (btnCode == 32)
 	{
+		if (_old_my_figure != nullptr)
 		delete _old_my_figure;
-		_old_my_figure = _my_figure;
+		_old_my_figure = Create_figure(7, 1);
+		*_old_my_figure = *_my_figure;
+
 		_my_figure->Rotate();
 		Print_my_figure_in_field();
 
